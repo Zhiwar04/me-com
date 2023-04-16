@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::middleware(['auth','Role:admin'])->group(function () {
+Route::get("/admin/dashboard",[AdminController::class,'admin'])->name("admin.dashboard");
+});
+Route::middleware(['auth','Role:vendor'])->group(function () {
+Route::get("/vendor/dashboard",[VendorController::class,'vendor'])->name("vendor.dashboard");
+});
