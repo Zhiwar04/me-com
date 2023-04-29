@@ -240,8 +240,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-1.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-1.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -255,8 +255,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-2.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-2.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -272,8 +272,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-3.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-3.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -289,8 +289,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-4.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-4.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -306,8 +306,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-5.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-5.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -323,8 +323,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-6.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-6.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -340,8 +340,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-7.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-7.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -355,8 +355,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-8.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-8.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -372,8 +372,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-9.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-9.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -389,8 +389,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-10.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-10.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -406,8 +406,8 @@
                                 <a class="dropdown-item" href="javascript:;">
                                     <div class="d-flex align-items-center">
                                         <div class="user-online">
-                                            <img src="assets/images/avatars/avatar-11.png" class="msg-avatar"
-                                                alt="user avatar" />
+                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-11.png') }}"
+                                                class="msg-avatar" alt="user avatar" />
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="msg-name">
@@ -430,24 +430,28 @@
                     </li>
                 </ul>
             </div>
+            @php
+                $id = Auth::user()->id;
+                $admin = App\Models\User::find($id);
+            @endphp
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar" />
+                    <img src="{{ !empty($admin->photo) ? url('upload/admin_images/' . $admin->photo) : url('upload/no_image.jpg') }}"
+                        class="user-img" alt="user avatar" />
                     <div class="user-info ps-3">
-                        <p class="user-name mb-0">Pauline Seitz</p>
-                        <p class="designattion mb-0">Web Designer</p>
+                        <p class="user-name mb-0">{{ Auth::user()->name }}</p>
+                        <p class="designattion mb-0">{{ Auth::user()->email }}</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="javascript:;"><i
+                        <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
                                 class="bx bx-user"></i><span>Profile</span></a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:;"><i
-                                class="bx bx-cog"></i><span>Settings</span></a>
-                    </li>
+                    <li><a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
+                                class="bx bx-cog"></i><span>Change Password</span></a>
+
                     <li>
                         <a class="dropdown-item" href="javascript:;"><i
                                 class="bx bx-home-circle"></i><span>Dashboard</span></a>
@@ -464,7 +468,7 @@
                         <div class="dropdown-divider mb-0"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="javascript:;"><i
+                        <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
                                 class="bx bx-log-out-circle"></i><span>Logout</span></a>
                     </li>
                 </ul>

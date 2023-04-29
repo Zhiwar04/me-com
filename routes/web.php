@@ -32,7 +32,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 Route::middleware(['auth','Role:admin'])->group(function () {
 Route::get("/admin/dashboard",[AdminController::class,'admin'])->name("admin.dashboard");
+Route::get("/admin/logout",[AdminController::class,'adminLogout'])->name("admin.logout");
+Route::get("/admin/profile",[AdminController::class,'adminProfile'])->name("admin.profile");
+Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
 });
 Route::middleware(['auth','Role:vendor'])->group(function () {
 Route::get("/vendor/dashboard",[VendorController::class,'vendor'])->name("vendor.dashboard");
 });
+Route::get("/admin/login",[AdminController::class,'adminLogin'])->name("admin.login");

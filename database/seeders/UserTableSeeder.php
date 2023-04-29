@@ -27,9 +27,9 @@ class UserTableSeeder extends Seeder
              //admin
              [
 
-                'name' => 'admin',
-                'username'=>'admin',
-                'email' => 'zhiwar@gmail.com',
+                'name' => 'shaida',
+                'username'=>'shaida',
+                'email' => 'shaida@gmail.com',
                 'password' => hash::make(111),
                 'role' => 'admin',
                     'status' => 'active'
@@ -37,9 +37,9 @@ class UserTableSeeder extends Seeder
              ],
                 //vendor
                 [
-                    'name' => 'vendor',
-                    'username'=>'vendor',
-                    'email' => 'vendor@gmail.com',
+                    'name' => 'zhiwar',
+                    'username'=>'zhiwar',
+                    'email' => 'zhiwar@gmail.com',
                     'password' => hash::make(111),
                     'role' => 'vendor',
                     'status' => 'active'
