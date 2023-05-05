@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use LDAP\Result;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -21,7 +23,8 @@ class UserTableSeeder extends Seeder
                 'email' => 'zhiwar04@gmail.com',
                 'password' => hash::make(111),
                 'role' => 'user',
-                    'status' => 'active'
+                    'status' => 'active',
+                    'photo' => public_path('upload/admin_images/202304282123avatar-3.png'),
 
             ],
              //admin
@@ -32,8 +35,8 @@ class UserTableSeeder extends Seeder
                 'email' => 'shaida@gmail.com',
                 'password' => hash::make(111),
                 'role' => 'admin',
-                    'status' => 'active'
-
+                    'status' => 'active',
+                    'photo' => 'avatar-1.png',
              ],
                 //vendor
                 [
@@ -42,7 +45,8 @@ class UserTableSeeder extends Seeder
                     'email' => 'zhiwar@gmail.com',
                     'password' => hash::make(111),
                     'role' => 'vendor',
-                    'status' => 'active'
+                    'status' => 'active',
+                    'photo' => resource_path('assets/img/avatars/avatar.jpg'),
 
         ]
         ]
