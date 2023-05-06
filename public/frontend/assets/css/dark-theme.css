@@ -1,9 +1,9 @@
 html.dark-theme .switcher-wrapper {
-  background: #1e1e1e;
+    background: #1e1e1e;
 }
 html.dark-theme body {
-  background-color: #1a233a;
-  color: #8a99b5;
+    background-color: #1a233a;
+    color: #8a99b5;
 }
 html.dark-theme .h1,
 html.dark-theme .h2,
@@ -17,34 +17,34 @@ html.dark-theme h3,
 html.dark-theme h4,
 html.dark-theme h5,
 html.dark-theme h6 {
-  color: #bdd1f8;
+    color: #bdd1f8;
 }
 
 /* color: #f15412; */
 html.dark-theme .slider-content h1 {
-  color: #000;
+    color: #000;
 }
 html.dark-theme div {
-  border-color: #22315a !important;
+    border-color: #22315a !important;
 }
 html.dark-theme .cart-dropdown-wrap.cart-dropdown-hm2 {
-  background-color: #1a233a;
+    background-color: #1a233a;
 }
 html.dark-theme
-  .main-menu
-  > nav
-  > ul
-  > li
-  ul.sub-menu
-  li
-  ul.level-menu.level-menu-modify {
-  background-color: #1a233a;
-  border-color: #22315a;
+    .main-menu
+    > nav
+    > ul
+    > li
+    ul.sub-menu
+    li
+    ul.level-menu.level-menu-modify {
+    background-color: #1a233a;
+    border-color: #22315a;
 }
 html.dark-theme .header-top-ptb-1 ul li a,
 html.dark-theme .product-cart-wrap .product-content-wrap h2 a,
 html.dark-theme .cart-dropdown-wrap.account-dropdown a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .header-top-ptb-1 ul li a:hover,
 html.dark-theme .nav-tabs.links .nav-link:hover,
@@ -56,302 +56,311 @@ html.dark-theme .section-padding.footer-mid strong:hover,
 html.dark-theme .modal-content .modal-body h3 a:hover,
 html.dark-theme .cart-dropdown-wrap.account-dropdown a:hover,
 html.dark-theme
-  .mobile-header-wrapper-style
-  .mobile-header-wrapper-inner
-  .mobile-header-content-area
-  .mobile-menu-wrap
-  nav
-  .mobile-menu
-  li
-  a:hover {
-  color: #3bb77e;
+    .mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    a:hover {
+    color: #3bb77e;
 }
 html.dark-theme span,
 html.dark-theme .nav-tabs.links .nav-link {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .header-info > ul > li > ul.language-dropdown,
 html.dark-theme .main-menu > nav > ul > li ul.mega-menu,
 html.dark-theme .categories-dropdown-active-large.open {
-  background-color: #222e4c;
-  border: 1px solid #22315a;
+    background-color: #222e4c;
+    border: 1px solid #22315a;
 }
 html.dark-theme .categories-dropdown-wrap ul li {
-  border: 1px solid #2c3e6e;
+    border: 1px solid #2c3e6e;
 }
 html.dark-theme .categories-dropdown-wrap ul li a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .categories-dropdown-wrap ul li a:hover {
-  color: #3bb77e;
+    color: #3bb77e;
 }
 html.dark-theme .header-info > ul > li > ul.language-dropdown li a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .header-info > ul > li > ul.language-dropdown li a:hover {
-  color: #3bb77e;
+    color: #3bb77e;
 }
 html.dark-theme .header-style-1 .search-style-2 form {
-  border: 2px solid #8a99b5;
-  background: #1a233a;
-  color: #8a99b5;
+    border: 2px solid #8a99b5;
+    background: #1a233a;
+    color: #8a99b5;
 }
 html.dark-theme .header-style-1 .search-style-2 form input,
 html.dark-theme .select2-container--default .select2-selection--single,
 html.dark-theme
-  .select2-container--default
-  .select2-selection--single
-  .select2-selection__rendered {
-  background: #1a233a;
-  color: #8a99b5;
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
+    background: #1a233a;
+    color: #8a99b5;
 }
 html.dark-theme .header-style-1 .search-style-2 form input::placeholder {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .card {
-  background-color: #171717;
-  box-shadow: 0 0.1rem 0.7rem rgb(0 0 0 / 32%);
+    background-color: #171717;
+    box-shadow: 0 0.1rem 0.7rem rgb(0 0 0 / 32%);
 }
 html.dark-theme .card-header {
-  border-bottom: 1px solid rgb(255 255 255 / 13%);
+    border-bottom: 1px solid rgb(255 255 255 / 13%);
 }
 html.dark-theme .card-footer {
-  border-top: 1px solid rgb(255 255 255 / 13%);
+    border-top: 1px solid rgb(255 255 255 / 13%);
 }
 html.dark-theme .text-secondary {
-  color: #a8adb0 !important;
+    color: #a8adb0 !important;
 }
 html.dark-theme hr {
-  border-top: 1px solid rgb(255 255 255 / 10%);
+    border-top: 1px solid rgb(255 255 255 / 10%);
 }
 html.dark-theme .topbar {
-  background-color: #171717;
-  border-bottom: 1px solid rgb(237 237 237 / 12%);
+    background-color: #171717;
+    border-bottom: 1px solid rgb(237 237 237 / 12%);
 }
 html.dark-theme .banner-text h2 {
-  color: #000;
+    color: #000;
 }
 html.dark-theme .user-box {
-  border-left: 1px solid rgb(255 255 255 / 0.15);
+    border-left: 1px solid rgb(255 255 255 / 0.15);
 }
 html.dark-theme .user-info .user-name {
-  color: #e4e5e6;
+    color: #e4e5e6;
 }
 html.dark-theme .user-info .designattion {
-  color: #b3b3b3;
+    color: #b3b3b3;
 }
 html.dark-theme .product-list .row {
-  background-color: rgb(255 255 255 / 8%);
+    background-color: rgb(255 255 255 / 8%);
 }
 html.dark-theme .product-img {
-  background-color: rgb(0 0 0 / 25%);
-  border: 1px solid rgb(255 255 255 / 15%);
+    background-color: rgb(0 0 0 / 25%);
+    border: 1px solid rgb(255 255 255 / 15%);
 }
 html.dark-theme .banner-img .banner-text h4 {
-  color: #000;
+    color: #000;
 }
 html.dark-theme .product-cart-wrap .product-img-action-wrap,
 html.dark-theme .product-cart-wrap .product-content-wrap,
 html.dark-theme .header-style-1 .header-bottom-bg-color,
 html.dark-theme
-  .mobile-header-wrapper-style
-  .mobile-header-wrapper-inner
-  .mobile-header-top,
+    .mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-top,
 html.mobile-header-wrapper,
 html.dark-theme
-  .mobile-header-wrapper-style
-  .mobile-header-wrapper-inner
-  .mobile-header-content-area {
-  background-color: #1a233a;
-  border-color: #22315a;
+    .mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area {
+    background-color: #1a233a;
+    border-color: #22315a;
 }
 @media (min-width: 992px) {
-  html.dark-theme .product-list .row:hover {
-    background-color: rgb(255 255 255 / 15%);
-    margin-top: -0.25rem;
-    margin-bottom: 0.25rem;
-    -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
-  }
+    html.dark-theme .product-list .row:hover {
+        background-color: rgb(255 255 255 / 15%);
+        margin-top: -0.25rem;
+        margin-bottom: 0.25rem;
+        -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+    }
 }
 html.dark-theme .container {
-  background-color: #1a233a;
+    background-color: #1a233a;
 }
 html.dark-theme .recent-product-img {
-  background-color: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 10%);
+    background-color: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(255 255 255 / 10%);
 }
 html.dark-theme .page-footer {
-  background-color: #171717;
-  border-top: 1px solid rgb(237 237 237 / 12%);
+    background-color: #171717;
+    border-top: 1px solid rgb(237 237 237 / 12%);
 }
 html.dark-theme .mobile-toggle-menu {
-  color: #e4e5e6;
+    color: #e4e5e6;
 }
 html.dark-theme .btn-close {
-  filter: invert(1) grayscale(100%) brightness(200%);
+    filter: invert(1) grayscale(100%) brightness(200%);
 }
 html.dark-theme .logo-icon {
-  filter: invert(1) grayscale(100%) brightness(200%);
+    filter: invert(1) grayscale(100%) brightness(200%);
 }
 html.dark-theme .toggle-icon {
-  color: #e7e9ec;
+    color: #e7e9ec;
 }
 html.dark-theme .topbar .navbar-nav .nav-link {
-  border-left: 0 solid rgb(255 255 255 / 12%);
-  color: #e4e5e6;
+    border-left: 0 solid rgb(255 255 255 / 12%);
+    color: #e4e5e6;
 }
 html.dark-theme .select2-dropdown {
-  background-color: #22315a;
-  border: 1px solid rgb(255 255 255 / 12%);
+    background-color: #22315a;
+    border: 1px solid rgb(255 255 255 / 12%);
 }
 html.dark-theme
-  .select2-container--default
-  .select2-results__option--highlighted[aria-selected] {
-  color: #000;
+    .select2-container--default
+    .select2-results__option--highlighted[aria-selected] {
+    color: #000;
 }
 html.dark-theme .vendor-wrap {
-  background-color: #1a233a;
+    background-color: #1a233a;
 }
 html.dark-theme
-  .select2-dropdown
-  .select2-search--dropdown
-  .select2-search__field {
-  background-color: #1a233a;
-  color: #fff;
-  border-color: #1a233a;
+    .select2-dropdown
+    .select2-search--dropdown
+    .select2-search__field {
+    background-color: #1a233a;
+    color: #fff;
+    border-color: #1a233a;
 }
 html.dark-theme .vendor-wrap .vendor-content-wrap h4 a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .header-wrap.header-space-between {
-  background-color: #1a233a;
+    background-color: #1a233a;
 }
 html.dark-theme .search-bar input {
-  color: #e4e5e6;
-  background-color: #1e1e1e;
-  border: 1px solid rgb(241 241 241 / 15%);
-  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0%);
+    color: #e4e5e6;
+    background-color: #1e1e1e;
+    border: 1px solid rgb(241 241 241 / 15%);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0%);
 }
 html.dark-theme .search-bar input::placeholder {
-  color: #e4e5e6 !important;
-  opacity: 0.5 !important;
+    color: #e4e5e6 !important;
+    opacity: 0.5 !important;
 }
 html.dark-theme::placeholder {
-  color: #e4e5e6 !important;
-  opacity: 0.5 !important;
+    color: #e4e5e6 !important;
+    opacity: 0.5 !important;
 }
 html.dark-theme .search-bar .btn-search {
-  background: #1e1e1e;
-  border: 1px solid rgb(217 211 211 / 30%);
+    background: #1e1e1e;
+    border: 1px solid rgb(217 211 211 / 30%);
 }
 html.dark-theme .search-bar .btn-search i {
-  color: #e4e5e6;
+    color: #e4e5e6;
 }
 html.dark-theme .dropdown-menu {
-  color: #e4e5e6;
-  background-color: #1e1e1e;
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.3);
+    color: #e4e5e6;
+    background-color: #1e1e1e;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.3);
 }
 html.dark-theme .main-menu > nav > ul > li > a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .main-menu > nav > ul > li > a:hover {
-  color: #3bb77e;
+    color: #3bb77e;
 }
 html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu {
-  background-color: #1a233a;
-  border: 1px solid rgb(255 255 255 / 12%);
+    background-color: #1a233a;
+    border: 1px solid rgb(255 255 255 / 12%);
 }
 html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu a:hover {
-  color: #3bb77e;
+    color: #3bb77e;
 }
 html.dark-theme .product-discount {
-  color: #fff;
-  background-color: rgb(255 255 255 / 12%);
+    color: #fff;
+    background-color: rgb(255 255 255 / 12%);
 }
 html.dark-theme .section-title.style-1 {
-  border-color: #2c3e6e;
+    border-color: #2c3e6e;
 }
 html.dark-theme .section-title.style-1::after {
-  background-color: #f74b81;
+    background-color: #f74b81;
 }
 html.dark-theme .product-list-small h6 a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .newsletter-content h2 {
-  color: #000;
+    color: #000;
 }
 html.dark-theme .featured.section-padding .row div {
-  background: #1a233a;
+    background: #1a233a;
 }
 
 html.dark-theme .featured.section-padding .row > div {
-  border: 1px solid rgb(255 255 255 / 12%);
+    border: 1px solid rgb(255 255 255 / 12%);
 }
 html.dark-theme .icon-box-title {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 @media screen and (max-width: 1024px) {
-  html.dark-theme .wrapper.toggled .overlay {
-    background: #fff;
-    opacity: 0.4;
-  }
-  html.dark-theme .chat-toggled .overlay {
-    background: #fff;
-    opacity: 0.4;
-  }
-  html.dark-theme .email-toggled .overlay {
-    background: #fff;
-    opacity: 0.4;
-  }
-  html.dark-theme .full-search-bar {
-    background: #171717;
-  }
-  html.dark-theme .search-bar .btn-search-back {
-    background: rgb(3 11 35 / 0%);
-    border: 1px solid rgb(217 211 211 / 0%);
-    height: calc(1.6em + 0.75rem + 2px);
-  }
-  html.dark-theme .search-bar .btn-search-back i {
-    color: #e4e5e6;
-  }
+    html.dark-theme .wrapper.toggled .overlay {
+        background: #fff;
+        opacity: 0.4;
+    }
+    html.dark-theme .chat-toggled .overlay {
+        background: #fff;
+        opacity: 0.4;
+    }
+    html.dark-theme .email-toggled .overlay {
+        background: #fff;
+        opacity: 0.4;
+    }
+    html.dark-theme .full-search-bar {
+        background: #171717;
+    }
+    html.dark-theme .search-bar .btn-search-back {
+        background: rgb(3 11 35 / 0%);
+        border: 1px solid rgb(217 211 211 / 0%);
+        height: calc(1.6em + 0.75rem + 2px);
+    }
+    html.dark-theme .search-bar .btn-search-back i {
+        color: #e4e5e6;
+    }
 }
 @media screen and (max-width: 767px) {
-  html.dark-theme .topbar .navbar-nav .nav-link {
-    border-left: 0 solid #ededed;
-  }
+    html.dark-theme .topbar .navbar-nav .nav-link {
+        border-left: 0 solid #ededed;
+    }
 }
 html.dark-theme .section-padding.footer-mid a,
 html.dark-theme .section-padding.footer-mid strong,
 html.dark-theme .section-padding.footer-mid p {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme .modal-content,
 html.dark-theme .mobile-header-wrapper-style .mobile-header-wrapper-inner {
-  background-color: #1a233a;
+    background-color: #1a233a;
 }
 html.dark-theme .modal-content .modal-body h3 a {
-  color: #8a99b5;
+    color: #8a99b5;
 }
 html.dark-theme
-  .mobile-header-wrapper-style
-  .mobile-header-wrapper-inner
-  .mobile-header-content-area
-  .mobile-menu-wrap
-  nav
-  .mobile-menu
-  li
-  a,
+    .mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    a,
 html.dark-theme
-  .mobile-header-wrapper-style
-  .mobile-header-wrapper-inner
-  .mobile-header-content-area
-  .mobile-header-info-wrap
-  .single-mobile-header-info
-  a {
-  color: #8a99b5;
+    .mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-header-info-wrap
+    .single-mobile-header-info
+    a {
+    color: #8a99b5;
+}
+/* login page */
+html.dark-theme .page-header.breadcrumb-wrap,
+html.dark-theme .login_wrap .widget-taber-content .background-white {
+    background: none;
+}
+
+html.dark-theme .form-group input:focus {
+    color: #fff;
 }
