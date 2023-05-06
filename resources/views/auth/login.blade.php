@@ -15,14 +15,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/dark-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/dark-theme.css?v=1.0') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Quick view -->
-    @include('frontend.body.quick_view')
+
     <!-- Header  -->
     @include('frontend.body.header')
     <!-- End Header  -->
@@ -50,7 +49,8 @@
                                     <div class="padding_eight_all ">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Don't have an account? <a href="page-register.html">Create
+                                            <p class="mb-30">Don't have an account? <a
+                                                    href="{{ route('register') }}">Create
                                                     here</a></p>
                                         </div>
                                         <form method="POST" action="{{ route('login') }}">

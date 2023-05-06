@@ -66,10 +66,11 @@
     <script src="{{ asset('frontend/assets/js/plugins/scrollup.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js?v=5.4') }}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.4') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.4') }}"></script>
+
 </body>
 
 </html>
