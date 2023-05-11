@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
                 'password' => hash::make(111),
                 'role' => 'user',
                     'status' => 'active',
-                    'photo' => public_path('upload/admin_images/202304282123avatar-3.png'),
+                    'photo' => 'avatar-1.png',
 
             ],
              //admin

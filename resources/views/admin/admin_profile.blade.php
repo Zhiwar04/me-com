@@ -165,7 +165,9 @@
                                         <div class="col-sm-9 text-secondary">
                                             <img id="showImage"
                                                 src="{{ !empty($admin->photo) ? url('upload/admin_images/' . $admin->photo) : url('upload/no_image.jpg') }}"
-                                                alt="Admin" style="width:100px; height: 100px;">
+                                                alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+
+
                                         </div>
                                     </div>
                                     <div class="row">

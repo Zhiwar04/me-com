@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
     ];
 
     /**
@@ -65,4 +66,28 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+	/**
+	 * The application's global HTTP middleware stack.
+	 *
+	 * These middleware are run during every request to your application.
+	 *
+	 * @return array<int, class-string|string>
+	 */
+	public function getMiddleware() {
+		return $this->middleware;
+	}
+
+	/**
+	 * The application's global HTTP middleware stack.
+	 *
+	 * These middleware are run during every request to your application.
+	 *
+	 * @param array<int, class-string|string> $middleware The application's global HTTP middleware stack.
+	 * @return self
+	 */
+	public function setMiddleware($middleware): self {
+		$this->middleware = $middleware;
+		return $this;
+	}
 }

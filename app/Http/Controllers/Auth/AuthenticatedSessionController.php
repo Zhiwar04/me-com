@@ -26,7 +26,10 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+        $notification = array(
+            'message' => 'Login Successfully',
+            'alert-type' => 'success'
+        );
         $request->session()->regenerate();
    $url ='';
         if(Auth::user()->role == 'admin'){
@@ -38,7 +41,7 @@ class AuthenticatedSessionController extends Controller
         }
         //wtwmana agar role naw table user yaksan bw ba admin route bkatawa bo page admin.dashboard
         // agarosh role yaksan bw ba vendor awa brwata vendor wa gar user bw brwata dashboard
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**
@@ -54,4 +57,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }

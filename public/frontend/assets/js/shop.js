@@ -116,13 +116,56 @@
     });
     //change theme
     $(document).ready(function () {
-        if ($("html").hasClass("light-theme")) {
-            $(".toggle-button").on("click", function () {
-                $("html").toggleClass("dark-theme");
+        var darkThemeEnabled = false;
+        var cookieName = "dark-theme-enabled";
+        // Check if the cookie exists and is set to "true"
+        var cookieValue = getCookie(cookieName);
+        if (cookieValue === "true") {
+            darkThemeEnabled = true;
+        }
 
-                $(".modes").toggleClass("fa-moon");
-                $(".modes").toggleClass("fa-sun");
-            });
+        // Set the initial theme based on the cookie value
+        if (darkThemeEnabled) {
+            $("html").addClass("dark-theme");
+            $("html").removeClass("light-theme");
+            $(".modes").addClass("fa-sun");
+            $(".modes").removeClass("fa-moon");
+        } else {
+            $("html").removeClass("dark-theme");
+            $("html").addClass("light-theme");
+            $(".modes").removeClass("fa-sun");
+            $(".modes").addClass("fa-moon");
+        }
+
+        // Toggle the theme and update the cookie
+        $(".toggle-button").on("click", function () {
+            $("html").toggleClass("dark-theme");
+            $(".modes").toggleClass("fa-moon");
+            $(".modes").toggleClass("fa-sun");
+
+            darkThemeEnabled = !darkThemeEnabled;
+            setCookie(cookieName, darkThemeEnabled);
+        });
+
+        // Helper functions to get and set cookies
+        function getCookie(name) {
+            var cookieValue = "";
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === name + "=") {
+                    cookieValue = decodeURIComponent(
+                        cookie.substring(name.length + 1)
+                    );
+                    break;
+                }
+            }
+            return cookieValue;
+        }
+
+        function setCookie(name, value) {
+            var cookieString = name + "=" + encodeURIComponent(value);
+            document.cookie = cookieString;
         }
     });
 })(jQuery);

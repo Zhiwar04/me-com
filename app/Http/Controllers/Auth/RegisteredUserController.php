@@ -47,9 +47,12 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
+        $notification = array(
+            'message' => 'User Registered Successfully',
+            'alert-type' => 'success'
+        );
         Auth::login($user);
           //ayneretawa bo page dashboard
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 }
