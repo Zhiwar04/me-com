@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\backend\BrandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +28,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
     }); // Gorup Milldeware End
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__.'/auth.php';
 Route::middleware(['auth','Role:admin'])->group(function () {
 Route::get("/admin/dashboard",[AdminController::class,'admin'])->name("admin.dashboard");
@@ -43,6 +37,8 @@ Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'
 Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
 Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
 });
+
+//vendor section
 Route::middleware(['auth','Role:vendor'])->group(function () {
 Route::get("/vendor/dashboard",[VendorController::class,'vendor'])->name("vendor.dashboard");
 Route::get("/vendor/profile",[VendorController::class,'vendorProfile'])->name("vendor.profile");
@@ -51,6 +47,23 @@ Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePas
 
 Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 Route::get("/vendor/logout",[VendorController::class,'vendorLogout'])->name("vendor.logout");
+
 });
-Route::get("/admin/login",[AdminController::class,'adminLogin'])->name("admin.login");
 Route::get("/vendor/login",[VendorController::class,'vendorLogin'])->name("vendor.login");
+Route::get("/admin/login",[AdminController::class,'adminLogin'])->name("admin.login");
+
+
+
+
+//tanya role admin btwanet am routana bneret
+Route::middleware(['auth','Role:admin'])->group(function () {
+//bo brandcontroller am routana bakar det am Routa la laravel 9 zyad krawa
+Route::controller(BrandController::class)->group(function(){
+Route::get('/all/brand','AllBrand')->name('all.brand');
+Route::get('/add/brand','AddBrand')->name('add.brand');
+Route::post('/store/brand','StoreBrand')->name('store.brand');
+Route::post('/update/brand','UpdateBrand')->name('update.brand');
+Route::get('/edit/brand/{id}','EditBrand')->name('edit.brand');
+Route::get('/delete/brand/{id}' , 'DeleteBrand')->name('delete.brand');
+}); //End route Controller
+}); //End Middleware
