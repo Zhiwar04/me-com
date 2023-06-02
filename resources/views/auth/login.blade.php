@@ -56,17 +56,36 @@
                                                     href="{{ route('register') }}">Create
                                                     here</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
-                                                    placeholder="Username or Email *" />
+                                        {{-- session message for password update  --}}
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
                                             </div>
-                                            <div class="form-group">
-                                                <input required="" id="password" type="password" name="password"
-                                                    placeholder="Your password *" />
+                                        @elseif(session('error'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ session('error') }}
                                             </div>
-                                            {{-- <div class="login_footer form-group">
+                                        @endif
+                                    </div>
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type="email" class="@error('email') is-invalid @enderror"
+                                                id="email" required="" name="email"
+                                                placeholder="Username or Email *" />
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <div class="form-group">
+                                            <input required="" class="@error('email') is-invalid @enderror"
+                                                id="password" type="password" name="password"
+                                                placeholder="Your password *" />
+                                        </div>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        {{-- <div class="login_footer form-group">
                                                 <div class="chek-form">
                                                     <input type="text" required="" name="email"
                                                         placeholder="Security code *" />
@@ -78,30 +97,30 @@
                                                     <b class="text-best">5</b>
                                                 </span>
                                             </div> --}}
-                                            <div class="login_footer form-group mb-50">
-                                                <div class="chek-form">
-                                                    <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                                            id="exampleCheckbox1" value="" />
-                                                        <label class="form-check-label"
-                                                            for="exampleCheckbox1"><span>Remember me</span></label>
-                                                    </div>
+                                        <div class="login_footer form-group mb-50">
+                                            <div class="chek-form">
+                                                <div class="custome-checkbox">
+                                                    <input class="form-check-input" type="checkbox" name="checkbox"
+                                                        id="exampleCheckbox1" value="" />
+                                                    <label class="form-check-label"
+                                                        for="exampleCheckbox1"><span>Remember me</span></label>
                                                 </div>
-                                                <a class="text-muted" href="{{ route('password.request') }}">Forgot
-                                                    password?</a>
                                             </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up"
-                                                    name="login">Log in</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                            <a class="text-muted" href="{{ route('password.request') }}">Forgot
+                                                password?</a>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-heading btn-block hover-up"
+                                                name="login">Log in</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     @include('frontend.body.footer')

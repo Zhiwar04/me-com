@@ -38,9 +38,19 @@
 
                 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     @csrf
+                    {{-- session message for password update  --}}
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <span class="login100-form-title"> Admin Login </span>
 
-                    <div class="wrap-input100 validate-input">
+                    <div class="wrap-input100 validate-input @error('email') is-invalid @enderror">
                         <input class="input100" type="text" id="email" name="email" placeholder="Email" />
 
                         <span class="focus-input100"></span>
@@ -48,9 +58,11 @@
                         </span>
                         <i class="fa fa-envelope position-absolute" style="bottom: 16px; left:15px;"></i>
                     </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required"
-                        id="show_hide_password">
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <div class="wrap-input100 validate-input @error('password') is-invalid @enderror"
+                        data-validate="Password is required" id="show_hide_password">
                         <input type="password" class="input100 border-end-0" id="password" name="password"
                             placeholder="Enter Password" />
                         <span class="focus-input100"></span>
@@ -61,6 +73,9 @@
                                 class="bx bx-hide"></i></a>
 
                     </div>
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">Login</button>

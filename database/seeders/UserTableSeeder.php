@@ -38,6 +38,16 @@ class UserTableSeeder extends Seeder
                     'status' => 'active',
                     'photo' => 'avatar-1.png',
              ],
+             [
+
+                'name' => 'admin',
+                'username'=>'admin',
+                'email' => 'admin@gmail.com',
+                'password' => hash::make(111),
+                'role' => 'admin',
+                    'status' => 'active',
+                    'photo' => 'avatar-1.png',
+             ],
                 //vendor
                 [
                     'name' => 'zhiwar',

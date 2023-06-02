@@ -34,7 +34,8 @@ class AuthenticatedSessionController extends Controller
    $url ='';
         if(Auth::user()->role == 'admin'){
             $url = route('admin.dashboard');
-        }else if(Auth::user()->role == 'vendor'){
+        }
+        else if(Auth::user()->role == 'vendor'){
             $url = route('vendor.dashboard');
         }elseif(Auth::user()->role == 'user'){
             $url = "/dashboard";
