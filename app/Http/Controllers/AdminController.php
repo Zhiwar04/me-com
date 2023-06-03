@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use  Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -76,6 +75,46 @@ class AdminController extends Controller
 
     public function adminLogin(){
         return view('admin.admin_login');
+    }
+    public function InActiveVendor(){
+        $InActiveVendor = User::where('status','inactive')->where('role','vendor')->latest()->get();
+        return view('backend.vendor.inactive_vendor',compact('InActiveVendor'));
+    }
+    public function ActiveVendor(){
+        $ActiveVendor = User::where('status','active')->where('role','vendor')->latest()->get();
+        return view('backend.vendor.active_vendor',compact('ActiveVendor'));
+    }
+    public function InactiveVendorDetails($id){
+
+        $inactiveVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.inactive_vendor_details',compact('inactiveVendorDetails'));
+
+    }// End Mehtod
+    public function ActiveVendorApprove(Request $request){
+        $req_id = $request->id;
+          User::findOrFail($req_id)->update([
+            'status' =>'active'
+        ]);
+        $notification = array(
+            'message' => 'Vendor Approved Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('active.vendor')->with($notification);
+    }
+    public function activeVendorDetails($id){
+        $activeVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.active_vendor_details',compact('activeVendorDetails'));
+    }
+    public function InActiveVendorApprove(Request $request){
+        $req_id = $request->id;
+          User::findOrFail($req_id)->update([
+            'status' =>'inactive'
+        ]);
+        $notification = array(
+            'message' => 'Vendor Inactive Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('inactive.vendor')->with($notification);
     }
     public function adminLogout(Request $request): RedirectResponse
     {

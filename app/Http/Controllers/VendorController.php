@@ -76,8 +76,33 @@ public function VendorUpdatePassword(Request $request){
 
 } // End Mehtod
 
+
+//login vendir
     public function vendorLogin(){
         return view('vendor.vendor_login');
+    }
+
+    //register vendor
+    public function becomeVendor(){
+        return view('auth.become_vendor');
+    }
+    public function RegisterVendor(Request $request){
+        $user = User::Insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'vendor_join'=>$request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role'=>'vendor',
+            'status'=>'inactive',
+        ]);
+        $notification = array(
+            'message' => 'Vendor Registered Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('vendor.login')->with($notification);
     }
     public function vendorLogout(Request $request): RedirectResponse
     {

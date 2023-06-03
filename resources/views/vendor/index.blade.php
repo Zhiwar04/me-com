@@ -1,5 +1,16 @@
 @extends('vendor.vendor_dashboard')
 @section('vendor')
+    @php
+        $id = Auth::user()->id;
+        $vendor_id = App\Models\User::findOrfail($id);
+        $status = $vendor_id->status;
+    @endphp
+    @if ($status === 'active')
+        <h4> Vendor Is <span class="text-success">Active</span></h4>
+    @else
+        <h4> Vendor Is <span class="text-danger">Inactive</span></h4>
+        <p class="text-danger">please wait till the admin approve your request</p>
+    @endif
     <div class="page-content">
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
