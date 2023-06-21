@@ -161,8 +161,10 @@ html.mobile-header-wrapper,
 html.dark-theme
     .mobile-header-wrapper-style
     .mobile-header-wrapper-inner
-    .mobile-header-content-area {
+    .mobile-header-content-area,html.dark-theme .select2-selection .select2-selection--single,
+    html.dark-theme .main-menu > nav > ul > li ul.sub-menu li:hover ul.level-menu  {
     background-color: #1a233a;
+
     border-color: #22315a;
 }
 @media (min-width: 992px) {
@@ -363,4 +365,10 @@ html.dark-theme .login_wrap .widget-taber-content .background-white {
 
 html.dark-theme .form-group input:focus {
     color: #fff;
+}
+
+html.dark-theme .header-style-1 .search-location .select2-container--default .select2-selection--single{
+    background-color: #1a233a;
+    border: none;
+    box-shadow: 1px 2px 3px #000;
 }

@@ -9,7 +9,7 @@
         <h6 class="mb-0">Theme Styles</h6>
         <hr />
         <div class="d-flex align-items-center justify-content-between">
-            <div class="form-check">
+            <div class="form-check" id="light-theme">
                 <a id="lightmode">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -27,7 +27,7 @@
                     </svg>
                 </a>
             </div>
-            <div class="form-check">
+            <div class="form-check" id="dark-theme">
                 <a id="darkmode">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -42,7 +42,7 @@
             </div>
         </div>
         <hr />
-        <div class="form-check">
+        <div class="form-check" id="minimal-theme">
             <input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault" />
             <label class="form-check-label" for="minimaltheme">Minimal Theme</label>
         </div>

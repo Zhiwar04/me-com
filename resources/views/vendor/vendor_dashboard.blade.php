@@ -43,6 +43,7 @@
         <!--start header -->
         @include('vendor.body.header')
         <!--end header -->
+        @include('vendor.body.switcher')
         <!--start page wrapper -->
         <div class="page-wrapper">
             @yield('vendor')
@@ -57,10 +58,19 @@
                 class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
         @include('vendor.body.footer')
+
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center">
+                    <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
     <!--end switcher-->
     <!-- Bootstrap JS -->
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -83,7 +93,7 @@
     </script>
     <script src="{{ asset('adminbackend/assets/js/index.js') }}"></script>
     <!--app JS-->
-    <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/js/app.js?v=1.0') }}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
