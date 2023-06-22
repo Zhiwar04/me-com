@@ -16,7 +16,23 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [UserTableSeeder::class]
         );
-
+        $this->call(
+            [BrandTableSeeder::class]
+        );
+        $this->call(
+            [BannerTableSeeder::class]
+        );
+        $this->call(
+            [CategoryTableSeeder::class]);
+        $this->call(
+            [SubCategoryTableSeeder::class]
+        );
+        $this->call(
+            [SliderTableSeeder::class]
+        );
+        $this->call(
+            [ProductTableSeeder::class]
+        );
          \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AdminController,VendorController,UserController};
 use App\Http\Controllers\backend\{BrandController,CategoryController,SubCategoryController,ProductController,VendorProductController,SliderController,BannerController};
+use App\Http\Controllers\frontend\HomeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::resource('/', HomeController::class);
 //admin section
 Route::prefix('admin')->middleware(['auth', 'Role:admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'admin'])->name('admin.dashboard');
