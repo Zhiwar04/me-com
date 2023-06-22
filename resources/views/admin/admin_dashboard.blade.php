@@ -138,8 +138,15 @@
     <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js'
         referrerpolicy="origin"></script>
     <script>
+        var prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
         tinymce.init({
-            selector: '#mytextarea'
+            selector: '#mytextarea',
+            plugins: 'powerpaste casechange searchreplace autolink directionality advcode visualblocks visualchars image link media mediaembed codesample table charmap pagebreak nonbreaking anchor tableofcontents insertdatetime advlist lists checklist wordcount tinymcespellchecker editimage help formatpainter permanentpen charmap linkchecker emoticons advtable export autosave',
+            toolbar: 'undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | alignleft aligncenter alignright alignjustify lineheight | checklist bullist numlist indent outdent | removeformat',
+            height: '300px',
+            skin: prefersDarkMode ? 'oxide-dark' : 'oxide',
+            content_css: prefersDarkMode ? 'dark' : 'default',
         });
     </script>
 
