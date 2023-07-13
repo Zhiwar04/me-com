@@ -28,7 +28,7 @@ class CategoryController extends Controller
         //inserti datakan krawa bo naw databasaka
         Category::insert([
             'category_name'=>$request->category_name,
-            'category_slug'=>strtolower(str_replace(' ','-',$request->category_slug)),
+            'category_slug'=>strtolower(str_replace(' ','-',$request->category_name)),
             'category_image'=>$save_url,
         ]);
         $notification = array(

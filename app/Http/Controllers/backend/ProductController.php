@@ -136,8 +136,6 @@ public function UpdateProduct(Request $request){
         'discount_price' => $request->discount_price,
         'short_descp' => $request->short_descp,
         'long_descp' => $request->long_descp,
-
-
         'hot_deals' => $request->hot_deals,
         'featured' => $request->featured,
         'special_offer' => $request->special_offer,
@@ -173,9 +171,9 @@ public function UpdateProductThambnail(Request $request){
     Image::make($image)->resize(800,800)->save('upload/products/thambnail/'.$name_gen);
     //rasmaka lam shwena save krawa
     $save_url = 'upload/products/thambnail/'.$name_gen;
-    if (file_exists($oldImage)) {
-        unlink($oldImage);
-    }
+    // if (file_exists($oldImage)) {
+    //     unlink($oldImage);
+    // }
     Product::findOrFail($pro_id)->update([
         'product_thambnail' => $save_url,
         'updated_at' => Carbon::now(),

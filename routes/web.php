@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AdminController,VendorController,UserController};
 use App\Http\Controllers\backend\{BrandController,CategoryController,SubCategoryController,ProductController,VendorProductController,SliderController,BannerController};
-use App\Http\Controllers\frontend\HomeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\frontend\{IndexController,CartController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +15,8 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::resource('/', HomeController::class);
+Route::get('/', [IndexController::class, 'index'])->name('index');
+// Route::resource('/', HomeController::class);
 //admin section
 Route::prefix('admin')->middleware(['auth', 'Role:admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'admin'])->name('admin.dashboard');
@@ -156,4 +156,21 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
 
     }); // Gorup Milldeware End
+
+
+
+    /// frontend product details all route
+
+    Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+    Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+    Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+    Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+    Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+    Route::get('/product/view/modal/{id}', [IndexController::class, 'modalProduct']);
+    //shopping caart
+    Route::post("/cart/store/{id}",[CartController::class,'storeToCart']);
+    Route::post("/mini/cart/detail/{id}",[CartController::class,'storeInDetailCart']);
+    Route::get("/mini/cart",[CartController::class,'AddToCart']);
+    Route::get("/cart/product/remove/{id}",[CartController::class,'RemoveCartItem']);
+
 require __DIR__.'/auth.php';

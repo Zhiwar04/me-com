@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+    .base-button {
+        @apply w-[30px] h-[30px] text-center px-[-6px] py-[6px] bg-red-500 text-white mt-4 inline-block   rounded-full items-center;
+    }
+}

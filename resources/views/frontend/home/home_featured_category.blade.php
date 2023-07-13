@@ -13,25 +13,34 @@
                 @foreach ($categories as $category)
                     <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                         <figure class="img-hover-scale overflow-hidden">
-                            <a href="shop-grid-right.html"><img src="{{ asset($category->category_image) }}"
-                                    alt="" /></a>
-                        </figure>
+                            <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}"><img
+                                    src="{{ asset($category->category_image) }}" alt="" /></a>
 
-                        <h6><a href="shop-grid-right.html">{{ $category->category_name }}</a></h6>
+                        </figure>
+                        @php
+                            $products = App\Models\Product::where('category_id', $category->id)->get();
+                        @endphp
+
+                        <h6><a
+                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}</a>
+                        </h6>
                         @foreach ($products as $product)
                             @if ($product->category_id == $category->id)
                                 @if (count($products) > 0)
                                     <span>{{ count($products) }} items</span>
-                                @endif
-                            @else
-                                <span>0 item</span>
+                                @break
                             @endif
-                        @endforeach
+                        @else
+                            <span>0 item</span>
+                        @break
 
-                    </div>
+                    @endif
                 @endforeach
 
             </div>
-        </div>
+        @endforeach
+
     </div>
+</div>
+</div>
 </section>

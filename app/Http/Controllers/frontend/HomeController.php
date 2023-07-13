@@ -18,13 +18,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories =  Category::orderBy('category_name','ASC')->get();
+        $categories =  Category::orderBy('category_name','ASC')->get()->limit(6);
         $products = Product::where('status',1)->orderBy('product_name','ASC')->get();
         $new_products = Product::where('status',1)->orderBy('id','ASC')->limit(10)->get();
         $brands = Brand::orderBy('brand_name','ASC')->get();
         $banners = Banner::orderBy('id','DESC')->get();
         $subcategories = SubCategory::orderBy('subcategory_name','ASC')->get();
-        $sliders = Slider::orderBy('id','DESC')->get();
         $users = User::all();
         return view('frontend.index',compact('categories','products','new_products','brands','banners','subcategories','sliders','users'));
     }

@@ -14,7 +14,7 @@ class UserController extends Controller
         //aw ida war agre ka login bwa
            $UserData = User::find($id);
            // datakani aw ida war agretawa
-       return view('index',compact('UserData'));
+       return view('auth.index',compact('UserData'));
     } //END METHOD
     public function UserProfileStore(Request $request){
 
