@@ -5,6 +5,7 @@ use App\Http\Controllers\{AdminController,VendorController,UserController};
 use App\Http\Controllers\backend\{BrandController,CategoryController,SubCategoryController,ProductController,VendorProductController,SliderController,BannerController};
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\frontend\{IndexController,CartController};
+use App\Http\Controllers\User\{WishlistController,CompareController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -164,13 +165,47 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
     Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
     Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-    Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+    Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct'])->name('category.product');
     Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+    Route::get('/product/brand/{id}/{slug}', [IndexController::class, 'BrandWiseProduct'])->name("brand.details");
     Route::get('/product/view/modal/{id}', [IndexController::class, 'modalProduct']);
-    //shopping caart
+    //shopping cart
     Route::post("/cart/store/{id}",[CartController::class,'storeToCart']);
     Route::post("/mini/cart/detail/{id}",[CartController::class,'storeInDetailCart']);
     Route::get("/mini/cart",[CartController::class,'AddToCart']);
     Route::get("/cart/product/remove/{id}",[CartController::class,'RemoveCartItem']);
+    Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+    /// Add to Compare
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
+    /// User All Route
+Route::middleware(['auth','Role:user'])->group(function() {
 
+    // Wishlist All Route
+   Route::controller(WishlistController::class)->group(function(){
+       Route::get('/wishlist' , 'AllWishlist')->name('wishlist');
+       Route::get('/get-wishlist-product' , 'GetWishlistProduct');
+    Route::get('/remove-wishlist/{id}' , 'WishlistRemove');
+
+
+   });
+ // Compare All Route
+ Route::controller(CompareController::class)->group(function(){
+    Route::get('/compare' , 'AllCompare')->name('compare');
+    Route::get('/get-compare-product' , 'GetCompareProduct');
+    Route::get('/compare-remove/{id}' , 'CompareRemove');
+
+
+});
+ // Cart All Route
+ Route::controller(CartController::class)->group(function(){
+     Route::get('/mycart' , 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'CartRemove');
+    Route::get('/cart-decrement/{id}' , 'CartDecrement');
+    Route::get('/cart-increment/{id}' , 'CartIncrement');
+
+
+});
+
+   }); // end group middleware
 require __DIR__.'/auth.php';

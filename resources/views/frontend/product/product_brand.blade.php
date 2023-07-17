@@ -5,10 +5,10 @@
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h5 class="mb-15">{{ $breadcat->category_name }}</h5>
+                        <h5 class="mb-15">{{ $breadbrand->brand_name }}</h5>
                         <div class="breadcrumb">
                             <a href="{{ '/' }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span> {{ $breadcat->category_name }}
+                            <span></span> {{ $breadbrand->brand_name }}
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a href="shop-grid-right.html">{{ $product['brand']['brand_name'] }}</a>
                                     </div>
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">

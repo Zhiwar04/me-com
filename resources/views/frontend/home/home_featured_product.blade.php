@@ -30,7 +30,7 @@
                             <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
 
                                 @foreach ($featured as $feature)
-                                    <div class="product-cart-wrap">
+                                    <div class="product-cart-wrap col-md-6 col-sm-12">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
                                                 <a
@@ -43,14 +43,15 @@
                                             </div>
                                             <div class="product-action-1">
 
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" id="{{ $feature->id }}"
-                                                    onclick="viewProduct(this.id)" data-bs-target="#quickViewModal">
-                                                    <i class="fi-rs-eye"></i></a>
+                                                <a aria-label="Add To Wishlist" class="action-btn"
+                                                    id="{{ $feature->id }}" onclick="addToWishList(this.id)"><i
+                                                        class="fi-rs-heart"></i></a>
+
+                                                <a aria-label="Compare" class="action-btn" id="{{ $feature->id }}"
+                                                    onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+                                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
+                                                    data-bs-target="#quickViewModal" id="{{ $feature->id }}"
+                                                    onclick="viewProduct(this.id)"><i class="fi-rs-eye"></i></a>
                                             </div>
                                             @php
                                                 $amount = $feature->selling_price - $feature->discount_price;
@@ -96,8 +97,7 @@
                                                 </div>
                                                 <span class="font-xs text-heading"> Sold: 90/120</span>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <button class="Addbtn Addbtn-2">Add To Cart</button>
                                         </div>
                                     </div>
                                     <!--End product Wrap-->

@@ -28,7 +28,7 @@ class BrandController extends Controller
         //inserti datakan krawa bo naw databasaka
         Brand::insert([
             'brand_name'=>$request->brand_name,
-            'brand_slug'=>strtolower(str_replace(' ','-',$request->brand_slug)),
+            'brand_slug'=>strtolower(str_replace(' ','-',$request->brand_name)),
             'brand_image'=>$save_url,
         ]);
         $notification = array(

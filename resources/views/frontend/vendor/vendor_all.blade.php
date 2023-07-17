@@ -116,7 +116,8 @@
                                         $products = App\Models\Product::where('vendor_id', $vendor->id)->get();
                                     @endphp
                                     <div class="mb-10">
-                                        <span class="font-small total-product">{{ count($products) }} products</span>
+                                        <span class="font-small total-product">{{ count($products) }}
+                                            products</span>
                                     </div>
                                 </div>
                                 <div class="vendor-info mb-30">

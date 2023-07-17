@@ -35,13 +35,14 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
-                                                    class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
+
+                                            <a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                id="{{ $item->id }}" onclick="viewProduct(this.id)"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $item->id }}"
+                                                onclick="viewProduct(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
                                         @php
                                             $amount = $item->selling_price - $item->discount_price;
@@ -87,13 +88,12 @@
                                             @else
                                                 <div class="product-price">
                                                     <span>{{ $item->discount_price }} IQD</span>
-                                                    <span class="old-price">{{ $item->selling_price }} IQD</span>
+                                                    <span
+                                                        class="old-price block absolute bottom-1">{{ $item->selling_price }}
+                                                        IQD</span>
                                                 </div>
                                             @endif
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
+                                            <button class="Addbtn Addbtn-2">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -143,13 +143,14 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
-                                                    class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
+
+                                            <a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                id="{{ $item->id }}" onclick="viewProduct(this.id)"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $item->id }}"
+                                                onclick="viewProduct(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
                                         @php
                                             $amount = $item->selling_price - $item->discount_price;
@@ -195,13 +196,12 @@
                                             @else
                                                 <div class="product-price">
                                                     <span>{{ $item->discount_price }} IQD</span>
-                                                    <span class="old-price">{{ $item->selling_price }} IQD</span>
+                                                    <span
+                                                        class="old-price block absolute bottom-1">{{ $item->selling_price }}
+                                                        IQD</span>
                                                 </div>
                                             @endif
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
+                                            <button class="Addbtn Addbtn-2">Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -252,13 +252,14 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                                href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
+
+                                            <a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
+                                                onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                id="{{ $item->id }}" onclick="viewProduct(this.id)"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $item->id }}"
+                                                onclick="viewProduct(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
                                         @php
                                             $amount = $item->selling_price - $item->discount_price;
@@ -304,13 +305,12 @@
                                             @else
                                                 <div class="product-price">
                                                     <span>{{ $item->discount_price }} IQD</span>
-                                                    <span class="old-price">{{ $item->selling_price }} IQD</span>
+                                                    <span
+                                                        class="old-price block absolute bottom-1">{{ $item->selling_price }}
+                                                        IQD</span>
                                                 </div>
                                             @endif
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
+                                            <button class="Addbtn Addbtn-2">Add</button>
                                         </div>
                                     </div>
                                 </div>

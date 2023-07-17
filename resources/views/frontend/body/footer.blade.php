@@ -9,8 +9,8 @@
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
-                                    Mart</span></p>
+                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Shaida &
+                                    Zhiwar</span></p>
                             <form class="form-subcriber d-flex">
                                 <input type="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>
@@ -183,8 +183,9 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce
-                    Template <br />All rights reserved</p>
+                <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">Zhiwar & Shaida</strong> -
+                    Multi-Vendor Ecommerce
+                    Website <br />All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 

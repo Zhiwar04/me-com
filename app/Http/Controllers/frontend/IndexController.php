@@ -12,7 +12,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $categories =  Category::orderBy('category_name','ASC')->limit(6)->get();
+        $categories =  Category::orderBy('category_name','ASC')->get();
         $products = Product::where('status',1)->orderBy('product_name','ASC')->get();
         $banners = Banner::orderBy('id','DESC')->get();
 
@@ -29,8 +29,10 @@ class IndexController extends Controller
         $special_offers=Product::where('status',1)->where('special_offer',1)->orderBy('id', 'DESC')->limit(3)->get();
         $hot_deals=Product::where('discount_price','!=',null)->where('hot_deals',1)->orderBy('id', 'DESC')->limit(3)->get();
         $special_deals=Product::where('discount_price','!=',null)->where('special_deals',1)->orderBy('id', 'DESC')->limit(3)->get();
+        $vendors = User::where("Role","vendor")->get();
+        $brands = Brand::limit(10)->get();
         return view('frontend.index', compact('category','categories', 'category2', 'product2',
-        'category4','product4', 'product','products', 'sliders', 'banners', 'subcategories', 'users','news','special_offers','hot_deals','special_deals'));
+        'category4','product4', 'product','products', 'sliders', 'banners', 'subcategories', 'users','news','special_offers','hot_deals','special_deals','vendors','brands'));
     }
     public function VendorDetails($id){
         $vendor = User::findOrFail($id);
@@ -89,6 +91,16 @@ compact('product','product_color','product_size','multiImage','relatedProduct'))
         return view('frontend.product.product_subcategory',compact('products','categories','breadsubcat','newProduct'));
 
        }// End Method
+       public function BrandWiseProduct(Request $request , $id , $slug){
+        $products = Product::where('status',1)->where('brand_id',$id)->orderBy('id','DESC')->get();
+        $categories = Category::orderBy('category_name','ASC')->get();
+
+        $breadbrand= Brand::where('id',$id)->first();
+
+        $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+
+        return view('frontend.product.product_brand',compact('products','categories','breadbrand','newProduct'));
+       }
        public function modalProduct($id){
         $product = Product::with("category","brand","subcategory")->findOrFail($id);
         $color = $product->product_color;

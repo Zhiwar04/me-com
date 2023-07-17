@@ -56,8 +56,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <a href="{{ route('vendor.details', $vendor->id) }}" class="btn btn-xs">Visit Store <i
+                        <a href="{{ route('vendor.details', $vendor->id) }}" class="Addbtn Addbtn-2">Visit Store <i
                                 class="fi-rs-arrow-small-right"></i></a>
+
                     </div>
                 </div>
             </div>

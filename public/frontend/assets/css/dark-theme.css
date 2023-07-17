@@ -64,7 +64,7 @@ html.dark-theme
     .mobile-menu
     li
     a:hover {
-    color: #3bb77e;
+    color: #ff1229;
 }
 html.dark-theme span,
 html.dark-theme .nav-tabs.links .nav-link {
@@ -83,13 +83,13 @@ html.dark-theme .categories-dropdown-wrap ul li a {
     color: #8a99b5;
 }
 html.dark-theme .categories-dropdown-wrap ul li a:hover {
-    color: #3bb77e;
+    color: #ff1229;
 }
 html.dark-theme .header-info > ul > li > ul.language-dropdown li a {
     color: #8a99b5;
 }
 html.dark-theme .header-info > ul > li > ul.language-dropdown li a:hover {
-    color: #3bb77e;
+    color: #ff1229;
 }
 html.dark-theme .header-style-1 .search-style-2 form {
     border: 2px solid #8a99b5;
@@ -161,8 +161,9 @@ html.mobile-header-wrapper,
 html.dark-theme
     .mobile-header-wrapper-style
     .mobile-header-wrapper-inner
-    .mobile-header-content-area,html.dark-theme .select2-selection .select2-selection--single,
-    html.dark-theme .main-menu > nav > ul > li ul.sub-menu li:hover ul.level-menu  {
+    .mobile-header-content-area,
+html.dark-theme .select2-selection .select2-selection--single,
+html.dark-theme .main-menu > nav > ul > li ul.sub-menu li:hover ul.level-menu {
     background-color: #1a233a;
 
     border-color: #22315a;
@@ -259,7 +260,7 @@ html.dark-theme .main-menu > nav > ul > li > a {
     color: #8a99b5;
 }
 html.dark-theme .main-menu > nav > ul > li > a:hover {
-    color: #3bb77e;
+    color: #ff1229;
 }
 html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu {
     background-color: #1a233a;
@@ -269,7 +270,7 @@ html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu a {
     color: #8a99b5;
 }
 html.dark-theme .main-menu > nav > ul > li:hover ul.sub-menu a:hover {
-    color: #3bb77e;
+    color: #ff1229;
 }
 html.dark-theme .product-discount {
     color: #fff;
@@ -367,8 +368,30 @@ html.dark-theme .form-group input:focus {
     color: #fff;
 }
 
-html.dark-theme .header-style-1 .search-location .select2-container--default .select2-selection--single{
+html.dark-theme
+    .header-style-1
+    .search-location
+    .select2-container--default
+    .select2-selection--single {
     background-color: #1a233a;
     border: none;
     box-shadow: 1px 2px 3px #000;
+}
+html.dark-theme .Addbtn-2 {
+    border: 2px solid #ff0066;
+    color: #ff0066;
+}
+html.dark-theme .Addbtn-2::after {
+    height: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #ff0066;
+    z-index: -1;
+}
+html.dark-theme .Addbtn-2:hover {
+    color: whitesmoke;
+}
+html.dark-theme .Addbtn-2:hover:after {
+    height: 100%;
 }
