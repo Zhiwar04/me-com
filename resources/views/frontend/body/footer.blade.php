@@ -182,7 +182,7 @@
             <div class="col-12 mb-30">
                 <div class="footer-bottom"></div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
+         <div class="col-xl-4 col-lg-6 col-md-6">
                 <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">Zhiwar & Shaida</strong> -
                     Multi-Vendor Ecommerce
                     Website <br />All rights reserved</p>
