@@ -18,14 +18,7 @@
                         <ul>
 
                             <li><a href="page-account.html">My Cart</a></li>
-                            <li><a href="page-account.html">@php
-                                $date = \Carbon\Carbon::now('Asia/Baghdad')->format('l jS \\of F Y h:i:s A');
-                                echo $date;
-                            @endphp</a></li>
-                            <li><a href="page-account.html">@php
-                                $date = \Carbon\Carbon::now('UTC')->format('l jS \\of F Y h:i:s A');
-                                echo $date;
-                            @endphp</a></li>
+
                             <li><a href="shop-wishlist.html">Checkout</a></li>
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
@@ -62,11 +55,18 @@
                                         class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
                                     <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-fr.png') }}"
-                                                alt="" />Engish</a>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                <img width="20"
+                                                    src="{{ asset('frontend/assets/imgs/theme/flag-fr.png') }}"
+                                                    alt="" />
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        @endforeach
                                     </li>
-                                    <li>
+
+                                    {{-- <li>
                                         <a href="#"><img
                                                 src="{{ asset('frontend/assets/imgs/theme/flag-dt.png') }}"
                                                 alt="" />Kurdish</a>
@@ -75,7 +75,8 @@
                                         <a href="#"><img
                                                 src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}"
                                                 alt="" />Arabic</a>
-                                    </li>
+                                    </li> --}}
+
                                 </ul>
                             </li>
 

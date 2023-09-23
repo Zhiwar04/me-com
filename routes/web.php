@@ -10,12 +10,15 @@ use App\Http\Controllers\backend\{
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\frontend\{IndexController, CartController, ShopController};
 use App\Http\Controllers\User\{WishlistController, CompareController, CheckoutController, StripeController, ReviewController,};
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 require __DIR__ . '/auth.php';
 
 
 
 
-
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+{
                     //       routes             //
                    //routes for frontend
  Route::group([], function () {
@@ -353,3 +356,8 @@ Route::prefix('admin')->middleware(['auth', 'Role:admin'])->group(function () {
         Route::post('/seo/setting/update', 'SeoSettingUpdate')->name('seo.setting.update');
     }); //End route Controller
 });
+
+
+
+});
+// translate route
