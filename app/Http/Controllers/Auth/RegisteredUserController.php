@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use App\Notifications\userReg;
+use App\Notifications\vendorReg;
+use Illuminate\Support\Facades\Notification;
 class RegisteredUserController extends Controller
 {
     /**
@@ -53,6 +55,8 @@ class RegisteredUserController extends Controller
         );
         Auth::login($user);
           //ayneretawa bo page dashboard
+          $nuser = User::where('role','admin')->get();
+          Notification::send($nuser,new userReg($request));
         return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 }

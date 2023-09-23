@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.slider') }}" class="btn btn-primary">Add Banner</a>
+                    <a href="{{ route('banners.create') }}" class="btn btn-primary">Add Banner</a>
                 </div>
             </div>
         </div>
@@ -45,9 +45,13 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.banner', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
+                                        <a href="{{ route('banners.edit', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <form action="{{ route('banners.destroy', $item->id) }}" method="POST"
+                                            id="delete" style="display: inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

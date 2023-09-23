@@ -68,7 +68,7 @@
 
 
                     @foreach ($products as $product)
-                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
@@ -137,13 +137,14 @@
 
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>${{ $product->selling_price }}</span>
+                                                <span>{{ number_format($product->selling_price, 0) }} IQD</span>
 
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>${{ $product->discount_price }}</span>
-                                                <span class="old-price">${{ $product->selling_price }}</span>
+                                                <span>{{ number_format($product->discount_price, 0) }} IQD</span>
+                                                <span class="old-price">{{ number_format($product->selling_price, 0) }}
+                                                    IQD</span>
                                             </div>
                                         @endif
 
@@ -225,9 +226,9 @@
                                 </p>
 
                                 @if ($product->discount_price == null)
-                                    <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                                    <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0) }} IQD</p>
                                 @else
-                                    <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                                    <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0) }} IQD</p>
                                 @endif
 
                                 <div class="product-rate">

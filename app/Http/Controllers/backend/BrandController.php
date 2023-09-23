@@ -2,48 +2,97 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Image;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
-    public function AllBrand(){
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         $brands = Brand::latest()->get();
-           return view('backend.brand.brand_all',compact('brands'));
-       }//end method AllBrand()
-       public function AddBrand(){
-        return view('backend.brand.brand_add');
-       }
-       public function StoreBrand(Request $request){
-        //rasmaka wargirawatawa
-        $image = $request->file('brand_image');
-        //naweki nwey le nrawa bam shewaya 20282.png
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        //ba package image intervation size rasmaka kam krawataa
-        Image::make($image)->resize(300,300)->save('upload/brand/'.$name_gen);
-        //rasmaka lam shwena save krawa
-        $save_url = 'upload/brand/'.$name_gen;
-        //inserti datakan krawa bo naw databasaka
-        Brand::insert([
-            'brand_name'=>$request->brand_name,
-            'brand_slug'=>strtolower(str_replace(' ','-',$request->brand_name)),
-            'brand_image'=>$save_url,
-        ]);
-        $notification = array(
-            'message' =>'Brand Added successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('all.brand')->with($notification);
-       }
-       public function EditBrand($id){
-        $Brand = Brand::findOrFail($id);
-        return view('backend.brand.brand_edit',compact('Brand'));
-       }
-       public function UpdateBrand(Request $request){
+        if(request()->wantsJson()){
 
-        $brand_id = $request->id;
+            return response()->json($brands);
+        }
+        return view('backend.brand.brand_all',compact('brands'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('backend.brand.brand_add');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+       //rasmaka wargirawatawa
+
+       $image = $request->file('brand_image');
+       //naweki nwey le nrawa bam shewaya 20282.png
+       $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+       //ba package image intervation size rasmaka kam krawataa
+       Image::make($image)->resize(300,300)->save('upload/brand/'.$name_gen);
+       //rasmaka lam shwena save krawa
+       $save_url = 'upload/brand/'.$name_gen;
+       $brand = Brand::create([
+           'brand_name'=>$request->brand_name,
+           'brand_slug'=>strtolower(str_replace(' ','-',$request->brand_name)),
+           'brand_image'=>$save_url,
+       ]);
+       //inserti datakan krawa bo naw databasaka
+
+       if(request()->wantsJson()){
+           return response()->json([
+               'msg'=>'Brand Added successfully'
+           ]);
+       }
+       $notification = array(
+           'message' =>'Brand Added successfully',
+           'alert-type' => 'success'
+       );
+       return redirect()->route('brands.index')->with($notification);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $Brand = Brand::findOrFail($id);
+        if(request()->wantsJson()){
+            return response()->json([
+                'Brand'=>$Brand,
+            ]);
+        }
+        return view('backend.brand.brand_edit',compact('Brand'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+
         $old_img = $request->old_image;
 
         if ($request->file('brand_image')) {
@@ -57,50 +106,72 @@ class BrandController extends Controller
            unlink($old_img);
         }
 
-        Brand::findOrFail($brand_id)->update([
+       $Brand= Brand::findOrFail($id)->update([
             'brand_name' => $request->brand_name,
             'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)),
             'brand_image' => $save_url,
         ]);
+        if(request()->wantsJson()){
+            return response()->json([
+                'msg'=>'Brand Updated successfully',
+                'status'=>201,
+                'data'=>$Brand,
+            ]);
+        }
 
        $notification = array(
             'message' => 'Brand Updated with image Successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('all.brand')->with($notification);
+        return redirect()->route('brands.index')->with($notification);
 
         } else {
 
-             Brand::findOrFail($brand_id)->update([
+           $Brand =   Brand::findOrFail($id)->update([
             'brand_name' => $request->brand_name,
             'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)),
         ]);
-
+        if(request()->wantsJson()){
+            return response()->json([
+                'msg'=>'Brand Updated successfully',
+                'status'=>201,
+                'data'=>$Brand,
+            ]);
+        }
        $notification = array(
             'message' => 'Brand Updated without image Successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('all.brand')->with($notification);
+        return redirect()->route('brands.index')->with($notification);
 
         } // end else
+    }
 
-    }// End Method
-    public function DeleteBrand($id){
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
 
-        $brand = Brand::findOrFail($id);
-        $img = $brand->brand_image;
-        unlink($img );
+            $brand = Brand::findOrFail($id);
+            $img = $brand->brand_image;
+            unlink($img);
 
-        Brand::findOrFail($id)->delete();
+            $brand->delete();
+           if(request()->wantsJson()){
+               return response()->json([
+                   'msg'=>'Brand Deleted successfully',
 
-        $notification = array(
-            'message' => 'Brand Deleted Successfully',
-            'alert-type' => 'success'
-        );
-
+               ]);
+              }
+            $notification = array(
+                'message' => 'Brand Deleted Successfully',
+                'alert-type' => 'success'
+            );
+        // Redirect to a relevant page, such as a brand list page.
         return redirect()->back()->with($notification);
+    }
 
-    }// End Method
 }

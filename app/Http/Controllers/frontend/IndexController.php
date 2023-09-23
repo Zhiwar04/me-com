@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\{Category, SubCategory, Brand, Product, MultiImg, User, Slider, Banner};
-
+use App\Models\Order;
 
 
 class IndexController extends Controller
@@ -34,6 +35,7 @@ class IndexController extends Controller
         return view('frontend.index', compact('category','categories', 'category2', 'product2',
         'category4','product4', 'product','products', 'sliders', 'banners', 'subcategories', 'users','news','special_offers','hot_deals','special_deals','vendors','brands'));
     }
+
     public function VendorDetails($id){
         $vendor = User::findOrFail($id);
         $vproduct = Product::where('vendor_id',$id)->get();
@@ -115,4 +117,25 @@ compact('product','product_color','product_size','multiImage','relatedProduct'))
 
           ));
        }
+       public function ProductSearch(Request $request){
+
+        $request->validate(['search' => "required"]);
+
+        $item = $request->search;
+        $categories = Category::orderBy('category_name','ASC')->get();
+        $products = Product::where('product_name','LIKE',"%$item%")->get();
+        $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.search',compact('products','item','categories','newProduct'));
+
+    }// End Method
+    public function SearchProduct(Request $request){
+
+
+
+         $item = $request->search;
+         $products = Product::where('product_name','LIKE',"%$item%")->select('product_name','product_slug','product_thambnail','selling_price','id')->limit(6)->get();
+
+         return view('frontend.product.search_product',compact('products'));
+
+      }// End Method
 }

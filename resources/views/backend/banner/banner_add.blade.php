@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form id="myForm" method="post" action="{{ route('store.banner') }}"
+                                <form id="myForm" method="post" action="{{ route('banners.store') }}"
                                     enctype="multipart/form-data">
                                     @csrf
 

@@ -7,6 +7,8 @@ use App\Models\User;
 use  Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Notifications\vendorReg;
+use Illuminate\Support\Facades\Notification;
 class VendorController extends Controller
 {
 
@@ -18,6 +20,9 @@ class VendorController extends Controller
         //aw ida war agre ka login bwa
            $vendor = User::find($id);
            // datakani aw ida war agretawa
+           if(request()->wantsJson()){
+               return response()->json($vendor);
+           }
        return view('vendor.vendor_profile',compact('vendor'));
    }
    public function VendorProfileStore(Request $request){
@@ -30,7 +35,6 @@ class VendorController extends Controller
        $data->address = $request->address;
        $data->vendor_join = $request->vendor_join;
        $data->vendor_short_info = $request->vendor_short_info;
-
        // agar reqeusti wena kra awa wenaka war agren w naweki nwe dadanen boy w ayxayna patheki dyari kraw dway awa save akain bo naw databasaka unlink bakar yat bo replace krdni wenaka lakate dubara bwnaway
        if ($request->file('photo')) {
            $file = $request->file('photo');
@@ -45,7 +49,12 @@ class VendorController extends Controller
            'message' => 'vendor Profile Updated Successfully',
            'alert-type' => 'success'
        );
-
+    if(request()->wantsJson()){
+        return response()->json([
+            'status' => 'success',
+            'message' => 'vendor Profile Updated Successfully',
+        ]);
+    }
        return redirect()->back()->with($notification);
 
    } // End Mehtod
@@ -72,6 +81,12 @@ public function VendorUpdatePassword(Request $request){
         'password' => Hash::make($request->new_password)
 
     ]);
+    if(request()->wantsJson()){
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Password Changed Successfully',
+        ]);
+    }
     return back()->with("status", " Password Changed Successfully");
 
 } // End Mehtod
@@ -101,6 +116,8 @@ public function VendorUpdatePassword(Request $request){
             'message' => 'Vendor Registered Successfully',
             'alert-type' => 'success'
         );
+        $vuser = User::where('role','admin')->get();
+        Notification::send($vuser, new vendorReg($request));
 
         return redirect()->route('vendor.login')->with($notification);
     }

@@ -24,10 +24,11 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{ route('update.category') }}" method="post"
+                            <form id="myForm" action="{{ route('categories.update', $Category->id) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $Category->id }}">
+                                @method('PUT')
+
                                 <input type="hidden" name="old_image" value="{{ $Category->category_image }}">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">

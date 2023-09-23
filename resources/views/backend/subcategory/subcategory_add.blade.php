@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{ route('store.subcategory') }}" method="post">
+                            <form id="myForm" action="{{ route('subcategories.store') }}" method="post">
                                 @csrf
 
                                 <div class="row mb-3">

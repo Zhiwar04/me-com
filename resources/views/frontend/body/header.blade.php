@@ -18,6 +18,14 @@
                         <ul>
 
                             <li><a href="page-account.html">My Cart</a></li>
+                            <li><a href="page-account.html">@php
+                                $date = \Carbon\Carbon::now('Asia/Baghdad')->format('l jS \\of F Y h:i:s A');
+                                echo $date;
+                            @endphp</a></li>
+                            <li><a href="page-account.html">@php
+                                $date = \Carbon\Carbon::now('UTC')->format('l jS \\of F Y h:i:s A');
+                                echo $date;
+                            @endphp</a></li>
                             <li><a href="shop-wishlist.html">Checkout</a></li>
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
@@ -37,7 +45,18 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
+                            <li>
+                                <a class="language-dropdown-active" href="#">Currency <i
+                                        class="fi-rs-angle-small-down"></i></a>
+                                <ul class="language-dropdown">
+                                    <li>
+                                        <a href="#"><img
+                                                src="{{ asset('frontend/assets/imgs/theme/flag-en.png') }}"
+                                                alt="" />USD</a>
+                                    </li>
 
+                                </ul>
+                            </li>
                             <li>
                                 <a class="language-dropdown-active" href="#">English <i
                                         class="fi-rs-angle-small-down"></i></a>
@@ -60,6 +79,7 @@
                                 </ul>
                             </li>
 
+
                             <li>Need help? <a href="#contact"><strong class="text-brand"> Contact Us</strong></a>
                             </li>
 
@@ -69,23 +89,31 @@
             </div>
         </div>
     </div>
+
+
+    @php
+        $setting = App\Models\SiteSetting::find(1);
+
+    @endphp
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
-                            alt="logo" /></a>
+                    <a href="index.html"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
+                        <form action="{{ route('product.search') }}" method="post">
+                            @csrf
                             <select class="select-active">
                                 <option selected>All Categories</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                 @endforeach
                             </select>
-                            <input type="text" placeholder="Search for items..." />
+                            <input onfocus="search_result_show()" onblur="search_result_hide()" type="search"
+                                name="search" id="search" placeholder="Search for items..." />
+
                             <svg width="40" class=" mr-20" style="cursor:pointer ;" version="1"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
                                 enable-background="new 0 0 48 48">
@@ -102,6 +130,7 @@
                                 <path fill="#BBDEFB"
                                     d="M26.9,14.2c-1.7-2-4.2-3.2-6.9-3.2s-5.2,1.2-6.9,3.2c-0.4,0.4-0.3,1.1,0.1,1.4c0.4,0.4,1.1,0.3,1.4-0.1 C16,13.9,17.9,13,20,13s4,0.9,5.4,2.5c0.2,0.2,0.5,0.4,0.8,0.4c0.2,0,0.5-0.1,0.6-0.2C27.2,15.3,27.2,14.6,26.9,14.2z" />
                             </svg>
+                            <div id="searchProducts"></div>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -132,8 +161,8 @@
                                             <h4>Total <span id="totalPrice"></span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ url('/mycart') }}" class="outline">View cart</a>
+                                            <a href="{{ url('/checkout') }}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -281,6 +310,7 @@
 
                                     </ul>
                                 </li>
+                                <li><a href="{{ route('shop.page') }}">shop</a></li>
                                 <li><a href="">Contact</a></li>
                             </ul>
                         </nav>
@@ -291,7 +321,7 @@
 
                 <div class="hotline d-none d-lg-flex mr-80">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>Contact Us<span>24/7 Support Center</span></p>
+                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -411,8 +441,10 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…" />
+                <form action="{{ route('product.search') }}" method="post">
+                    @csrf
+                    <input type="text" id="searchmb" placeholder="Search for items…" />
+                    <div id="searchProductsmb"></div>
                     <button type="submit"><i class="fi-rs-search"></i></button>
                 </form>
             </div>
@@ -492,6 +524,12 @@
                             </ul>
                         </li>
                         <li class="menu-item-has-children">
+                            <a href="#">Currency</a>
+                            <ul class="dropdown">
+                                <li><a href="#">USD</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children">
                             <a href="">Contact </a>
                         </li>
                     </ul>
@@ -526,3 +564,25 @@
         </div>
     </div>
 </div>
+<style>
+    #searchProducts {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    function search_result_show() {
+        $("#searchProducts").slideDown();
+    }
+
+    function search_result_hide() {
+        $("#searchProducts").slideUp();
+    }
+</script>

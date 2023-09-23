@@ -24,9 +24,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{ route('update.subcategory') }}" method="post">
+                            <form id="myForm" action="{{ route('subcategories.update', $subcategory->id) }}"
+                                method="post">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $subcategory->id }}">
+                                @method('PUT')
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Category Name</h6>

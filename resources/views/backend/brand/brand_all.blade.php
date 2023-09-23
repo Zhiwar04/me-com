@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.brand') }}" class="btn btn-primary">Add Brand</a>
+                    <a href="{{ route('brands.create') }}" class="btn btn-primary">Add Brand</a>
 
 
 
@@ -45,10 +45,13 @@
                                     <td> <img src="{{ asset($item->brand_image) }}" style="width: 70px; height:40px;"> </td>
 
                                     <td>
-                                        <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
-
+                                        <a href="{{ route('brands.edit', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <form style="display: inline-block;" id="delete"
+                                            action="{{ route('brands.destroy', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" id="delete">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

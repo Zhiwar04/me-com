@@ -28,11 +28,12 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form id="myForm" method="post" action="{{ route('update.banner') }}"
+                                <form id="myForm" method="post" action="{{ route('banners.update', $banner->id) }}"
                                     enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
 
-                                    <input type="hidden" name="id" value="{{ $banner->id }}">
+
                                     <input type="hidden" name="old_img" value="{{ $banner->banner_image }}">
 
                                     <div class="row mb-3">

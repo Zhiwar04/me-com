@@ -62,12 +62,47 @@
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                     </h2>
+
+                                    @php
+                                        
+                                        $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->latest()
+                                            ->get();
+                                        
+                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
+                                        
+                                    @endphp
+
+
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                                            @if ($avarage == 0)
+                                            @elseif($avarage == 1 || $avarage < 2)
+                                                <div class="product-rating" style="width: 20%">
+                                                </div>
+                                            @elseif($avarage == 2 || $avarage < 3)
+                                                <div class="product-rating" style="width: 40%">
+                                                </div>
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                                <div class="product-rating" style="width: 60%">
+                                                </div>
+                                            @elseif($avarage == 4 || $avarage < 5)
+                                                <div class="product-rating" style="width: 80%">
+                                                </div>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                                <div class="product-rating" style="width: 100%">
+                                                </div>
+                                            @endif
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        <span class="font-small ml-5 text-muted"> ({{ count($reviewcount) }})</span>
                                     </div>
+
+
+
+
                                     <div>
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
@@ -81,7 +116,7 @@
 
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>{{ $product->selling_price }} IQD</span>
+                                                <span>{{ number_format($product->selling_price, 0) }} IQD</span>
 
                                             </div>
                                         @else
@@ -89,11 +124,12 @@
                                                 <span>{{ $product->discount_price }}
                                                     IQD</span>
                                                 <span
-                                                    class="old-price block absolute bottom-1">{{ $product->selling_price }}
+                                                    class="old-price block absolute bottom-1">{{ number_format($product->selling_price, 0) }}
                                                     IQD</span>
                                             </div>
                                         @endif
-                                        <button class="Addbtn Addbtn-2">Add</button>
+                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                            class="Addbtn Addbtn-2">Add</a>
                                     </div>
                                 </div>
                             </div>
@@ -125,8 +161,8 @@
                                         <div class="product-img product-img-zoom">
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                <img class="default-img" src="{{ asset($product->product_thambnail) }}"
-                                                    alt="" />
+                                                <img class="default-img"
+                                                    src="{{ asset($product->product_thambnail) }}" alt="" />
 
                                             </a>
                                         </div>
@@ -190,18 +226,21 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price">
-                                                    <span>${{ $product->selling_price }}</span>
+                                                    <span>{{ number_format($product->selling_price, 0) }} IQD</span>
                                                 </div>
                                             @else
                                                 <div class="product-price">
-                                                    <span>${{ $product->discount_price }}</span>
-                                                    <span class="old-price">${{ $product->selling_price }}</span>
+                                                    <span>{{ number_format($product->discount_price, 0) }} IQD</span>
+                                                    <span
+                                                        class="old-price">{{ number_format($product->selling_price) }}
+                                                        IQD</span>
                                                 </div>
                                             @endif
 
 
 
-                                            <button class="Addbtn Addbtn-2">Add</button>
+                                            <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                                class="Addbtn Addbtn-2">Add</a>
 
                                         </div>
                                     </div>

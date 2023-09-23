@@ -4,13 +4,22 @@ function viewProduct(id) {
         url: "/product/view/modal/" + id,
         dataType: "json",
         success: function (data) {
+            const options = {
+                style: "decimal",
+                maximumFractionDigits: 2,
+            };
+
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
             $("#product_name").text(data.product.product_name);
-            $("#price").text(data.product.selling_price);
+            $("#price").text(formatAmount(data.product.selling_price));
             $("#product_category").text(data.product.category.category_name);
             $("#product_brand").text(data.product.brand.brand_name);
             $("#product_id").val(id);
             $("#quantity").attr("max", data.product.product_qty);
             $("#quantity").val(1);
+            $("#pvendor_id").text(data.product.vendor_id);
             $("#product_subcategory").text(
                 data.product.subcategory.subcategory_name
             );
@@ -23,11 +32,10 @@ function viewProduct(id) {
                 $("#price").text("");
                 $("#old_price").text("");
                 $("#old_priceC").text("");
-                $("#price").text(data.product.selling_price);
+                $("#price").text(formatAmount(data.product.selling_price));
             } else {
-                $("#price").text(data.product.discount_price);
-                $("#old_price").text(data.product.selling_price);
-                $("#old_priceC").text("IQD");
+                $("#price").text(formatAmount(data.product.discount_price));
+                $("#old_price").text(formatAmount(data.product.selling_price));
             }
             // stock area
             if (data.product.product_qty > 0) {
@@ -43,6 +51,7 @@ function viewProduct(id) {
             $("#quickViewModal").on("hidden.bs.modal", function () {
                 $("#quantity").val(1);
                 $("#quantity").attr("max", "");
+                $("#product_image").attr("src", "");
             });
 
             //size
@@ -79,6 +88,7 @@ function addToCart() {
     let quantity = $("#quantity").val();
     let size = $("#size option:selected").text();
     let color = $("#color option:selected").text();
+    let vendor = $("#pvendor_id").text();
     $("#closeModal").click();
 
     $.ajax({
@@ -90,6 +100,7 @@ function addToCart() {
             quantity: quantity,
             size: size,
             color: color,
+            vendor: vendor,
         },
         dataType: "json",
         success: function (data) {
@@ -102,7 +113,6 @@ function addToCart() {
                 position: "top-end",
                 showConfirmButton: false,
                 timer: 3000,
-                icon: "success",
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener("mouseenter", swal.stopTimer);
@@ -111,13 +121,16 @@ function addToCart() {
             });
             if ($.isEmptyObject(data.error)) {
                 toast.fire({
+                    icon: "success",
                     title: data.success,
                 });
             } else {
                 toast.fire({
-                    title: data.success,
+                    icon: "error",
+                    title: data.error,
                 });
             }
+            // End Message
         },
     });
 }
@@ -126,6 +139,7 @@ function addInDetails() {
     let product_id = $("#id").val();
     let product_name = $("#dproduct_name").text();
     let quantity = $("#dquantity").val();
+    var vendor = $("#vproduct_id").val();
     let size = $("#dsize option:selected").text();
     let color = $("#dcolor option:selected").text();
 
@@ -137,6 +151,7 @@ function addInDetails() {
             quantity: quantity,
             size: size,
             color: color,
+            vendor: vendor,
         },
         dataType: "json",
         success: function (data) {
@@ -158,13 +173,16 @@ function addInDetails() {
             });
             if ($.isEmptyObject(data.error)) {
                 toast.fire({
+                    icon: "success",
                     title: data.success,
                 });
             } else {
                 toast.fire({
-                    title: data.success,
+                    icon: "error",
+                    title: data.error,
                 });
             }
+            // End Message
         },
     });
 }
@@ -176,24 +194,41 @@ function miniCart() {
         dataType: "json",
         success: function (response) {
             // console.log(response);
+            const options = {
+                style: "decimal",
+                maximumFractionDigits: 2,
+            };
+
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
             $("#m-itemNumber").text(response.quantity);
             $("#itemNumber").text(response.quantity);
-            $("#m-totalPrice").text(response.total);
-            $("#totalPrice").text(response.total);
+            $("#m-totalPrice").text(formatAmount(response.total));
+            $("#totalPrice").text(formatAmount(response.total));
             let miniCart = "";
+
             //response.cartCollection is the cart data in json format that we have passed from the controller and loop through it
             $.each(response.cartCollection, function (key, value) {
                 miniCart += ` <ul>
             <li>
                 <div class="shopping-cart-img mt-4">
-                    <a href="shop-product-right.html"><img alt="Nest" src="/${value.attributes.product_thumbnail} " class='rounded-full mb-3' style="width:50px;height:50px;" /></a>
+                    <a href="shop-product-right.html"><img alt="Nest" src="/${
+                        value.attributes.product_thumbnail
+                    } " class='rounded-full shadow-lg mb-3' style="width:50px;height:50px;" /></a>
                 </div>
                 <div class="shopping-cart-title" style="margin: -60px 74px 14px; width" 146px;>
-                    <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
-                    <h4><span>${value.quantity} × </span>${value.price}</h4>
+                    <h4><a href="shop-product-right.html"> ${
+                        value.name
+                    } </a></h4>
+                    <h4><span>${value.quantity} × </span>${formatAmount(
+                    value.price
+                )}</h4>
                 </div>
-                <div class="shopping-cart-delete" style="margin: -70px 1px 0px;">
-                    <a type='submit' id='${value.id}' onclick='removeCartItem(this.id)'><i class="fi-rs-cross-small base-button bg-red-500"></i></a>
+                <div class="shopping-cart-delete" style="margin: -55px 1px 0px; ">
+                    <a type='submit' id='${
+                        value.id
+                    }' onclick='removeCartItem(this.id)'><i class="fi-rs-cross-small pt-1 px-1 rounded-full  text-white bg-red-500" style="width:50px; height:50px;"></i></a>
                 </div>
             </li>
         </ul>
@@ -292,10 +327,20 @@ function wishlist() {
         url: "/get-wishlist-product/",
         success: function (response) {
             // console.log(response);
+            const options = {
+                style: "decimal",
+                maximumFractionDigits: 2,
+            };
+
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
             $("#m-wishQty").text(response.wishQty);
             $("#wishQty").text(response.wishQty);
             let rows = "";
             $.each(response.wishlist, function (key, value) {
+                let price = value.product.selling_price;
+                let discount = value.product.discount_price;
                 rows += `<tr class="pt-30">
                         <td class="custome-checkbox pl-30">
 
@@ -316,9 +361,13 @@ function wishlist() {
                         </td>
                         <td class="price" data-title="Price">
                         ${
-                            value.product.discount_price == null
-                                ? `<h3 class="text-brand">$${value.product.selling_price}</h3>`
-                                : `<h3 class="text-brand">$${value.product.discount_price}</h3>`
+                            discount == null
+                                ? `<h3 class="text-brand">${formatAmount(
+                                      price
+                                  )}</h3>`
+                                : `<h3 class="text-brand">${formatAmount(
+                                      discount
+                                  )}</h3>`
                         }
 
                         </td>
@@ -438,7 +487,22 @@ function compare() {
         url: "/get-compare-product/",
         success: function (response) {
             var rows = "";
+            const options = {
+                style: "currency",
+                currency: "IQD",
+            };
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-US", options);
+            }
+
+            // Example usage:
+
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
             $.each(response, function (key, value) {
+                const selling_price = value.product.selling_price;
+                const discount_price = value.product.discount_price;
                 rows += ` <tr class="pr_image">
                                     <td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>
     <td class="row_img"><img src="/${
@@ -460,8 +524,12 @@ function compare() {
                                     <td class="product_price">
                       ${
                           value.product.discount_price == null
-                              ? `<h4 class="price text-brand">$${value.product.selling_price}</h4>`
-                              : `<h4 class="price text-brand">$${value.product.discount_price}</h4>`
+                              ? `<h4 class="price text-brand">${formatAmount(
+                                    selling_price
+                                )}</h4>`
+                              : `<h4 class="price text-brand">${formatAmount(
+                                    discount_price
+                                )}</h4>`
                       }
                                     </td>
 
@@ -551,41 +619,50 @@ function cart() {
         url: "/get-cart-product",
         dataType: "json",
         success: function (response) {
-            console.log(response);
-
+            // console.log(response);
+            const options = {
+                style: "decimal",
+                maximumFractionDigits: 2,
+            };
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
             let rows = "";
             $.each(response.cartCollection, function (key, value) {
+                let subtotoal = value.quantity * value.price;
                 rows += `<tr class="pt-30">
            <td class="custome-checkbox pl-30">
 
            </td>
-           <td class="image product-thumbnail pt-40"><img src="/${
+           <td class="image product-thumbnail pt-40"><img class="shadow-lg" style="border-radius:99999px;border:none" src="/${
                value.attributes.product_thumbnail
            } " alt="#"></td>
            <td class="product-des product-name">
-               <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${
+               <h6 class="mb-5 text-xl font-bold"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${
                    value.name
                } </a></h6>
 
            </td>
            <td class="price" data-title="Price">
-               <h4 class="text-body">$${value.price} </h4>
+               <h4 class="text-body text-xl font-bold">${formatAmount(
+                   value.price
+               )} </h4>
            </td>
              <td class="price" data-title="Price">
              ${
                  value.attributes.color == null
                      ? `<span>.... </span>`
-                     : `<h6 class="text-body">${value.attributes.color} </h6>`
+                     : `<h6 class="text-body text-xl font-bold">${value.attributes.color} </h6>`
              }
            </td>
               <td class="price" data-title="Price">
              ${
                  value.attributes.size == null
                      ? `<span>.... </span>`
-                     : `<h6 class="text-body">${value.attributes.size} </h6>`
+                     : `<h6 class="text-body text-xl font-bold">${value.attributes.size} </h6>`
              }
            </td>
-           <td class="text-center detail-info" data-title="Stock">
+           <td class="text-left detail-info" data-title="Stock">
                <div class="detail-extralink mr-15">
                    <div class="detail-qty border radius">
                     <a type="submit" class="qty-down" id="${
@@ -603,15 +680,25 @@ function cart() {
            </td>
 
            <td class="price" data-title="Price">
-               <h4 class="text-brand">${value.quantity * value.price} </h4>
+               <h4 class="text-brand text-xl font-bold">${formatAmount(
+                   subtotoal
+               )} </h4>
            </td>
-           <td class="action text-center" data-title="Remove">
+           <td class="action text-left ml-2" data-title="Remove">
             <a type="submit" class="text-body"  id="${
                 value.id
-            }" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
+            }" onclick="cartRemove(this.id)"><i class="fi-rs-trash bg-red-500 pt-3 pb-2 px-3 rounded-full  text-white text-xl"></i></a></td>
        </tr>`;
             });
             $("#cartPage").html(rows);
+            // Check if the cart is empty
+            if (response.cartCollection.length === 0) {
+                // If cart is empty, hide the div with id "cartTotalsDiv"
+                $("#couponFieldContainer").hide();
+            } else {
+                // If cart is not empty, show the div with id "cartTotalsDiv"
+                $("#couponFieldContainer").show();
+            }
         },
     });
 }
@@ -625,6 +712,7 @@ function cartRemove(id) {
         success: function (data) {
             cart();
             miniCart();
+            couponCalculation();
             // Start Message
             const Toast = Swal.mixin({
                 toast: true,
@@ -659,6 +747,7 @@ function cartIncrement(id) {
         success: function (data) {
             cart();
             miniCart();
+            couponCalculation();
         },
     });
 }
@@ -672,6 +761,7 @@ function cartDecrement(id) {
         success: function (data) {
             cart();
             miniCart();
+            couponCalculation();
         },
     });
 }
@@ -679,3 +769,188 @@ function cartDecrement(id) {
 // Cart Remove End
 
 // <!--  // End Load MY Cart // -->
+
+// Start Apply Coupon //
+function applyCoupon() {
+    // Check if the cart is empty
+    //cart page tr mabastman la table kay sarawaya agar hich tr nabw awa aw erroraman bate
+    if ($("#cartPage tr").length === 0) {
+        // Cart is empty, show error message and return
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+        });
+
+        Toast.fire({
+            type: "error",
+            icon: "error",
+            title: "Cannot apply coupon. Cart is empty.",
+        });
+
+        return;
+    }
+
+    // If cart is not empty, proceed with applying the coupon
+    var coupon_name = $("#coupon_name").val();
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        data: { coupon_name: coupon_name },
+        url: "/coupon-apply",
+        success: function (data) {
+            couponCalculation();
+
+            //agar couponaka bakar hat aw sectionay ka couponakay tyaya dyar namenet
+            // Start Message
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            if ($.isEmptyObject(data.error)) {
+                Toast.fire({
+                    type: "success",
+                    icon: "success",
+                    title: data.success,
+                });
+            } else {
+                Toast.fire({
+                    type: "error",
+                    icon: "error",
+                    title: data.error,
+                });
+            }
+            // End Message
+        },
+    });
+}
+// End Apply Coupon //
+// Start CouponCalculation Method
+function couponCalculation() {
+    $.ajax({
+        type: "GET",
+        url: "/coupon-calculation",
+        dataType: "json",
+        success: function (data) {
+            const options = {
+                style: "decimal",
+                maximumFractionDigits: 2,
+            };
+
+            function formatAmount(amount) {
+                return amount.toLocaleString("en-IQ", options) + " IQD";
+            }
+
+            if (data.total) {
+                $("#couponCalField").html(
+                    ` <tr>
+                        <td class="cart_total_label ">
+                            <h6 class="text-muted">Subtotal</h6>
+                        </td>
+                        <td class="cart_total_amount py-2">
+                            <h4 class="text-brand text-end">${formatAmount(
+                                data.total
+                            )}</h4>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="cart_total_label py-2">
+                            <h6 class="text-muted">Grand Total</h6>
+                        </td>
+                        <td class="cart_total_amount py-2">
+                            <h4 class="text-brand text-end">${formatAmount(
+                                data.total
+                            )}</h4>
+                        </td>
+                    </tr>
+                    `
+                );
+            } else {
+                $("#couponCalField").html(
+                    `<tr>
+                        <td class="cart_total_label py-2">
+                            <h6 class="text-muted font-bold">Subtotal</h6>
+                        </td>
+                        <td class="cart_total_amount py-2">
+                            <h4 class="text-brand text-end font-bold">${formatAmount(
+                                data.subtotal
+                            )}</h4>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="cart_total_label py-2">
+                            <h6 class="text-muted font-bold">Coupon </h6>
+                        </td>
+                        <td class="cart_total_amount py-2">
+                            <h6 class="text-brand text-end font-bold">${
+                                data.coupon_name
+                            } <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash  bg-red-500 pt-2  px-2 pb-1 rounded-full  text-white text-md"></i> </a> </h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cart_total_label py-2">
+                            <h6 class="text-muted font-bold">Discount Amount  </h6>
+                        </td>
+                        <td class="cart_total_amount py-2">
+                            <h4 class="text-brand text-end font-bold">${formatAmount(
+                                data.discount_amount
+                            )}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cart_total_label py-2">
+                            <h6 class="text-muted font-bold">Grand Total </h6>
+                        </td>
+                        <td class="cart_total_amount">
+                            <h4 class="text-brand text-end  font-bold">${formatAmount(
+                                data.total_amount
+                            )}</h4>
+                        </td>
+                    </tr> `
+                );
+            }
+        },
+    });
+}
+couponCalculation();
+// end CouponCalculation Method
+// Coupon Remove Start
+function couponRemove() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/coupon-remove",
+        success: function (data) {
+            couponCalculation();
+            // Start Message
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            if ($.isEmptyObject(data.error)) {
+                Toast.fire({
+                    type: "success",
+                    icon: "success",
+                    title: data.success,
+                });
+            } else {
+                Toast.fire({
+                    type: "error",
+                    icon: "error",
+                    title: data.error,
+                });
+            }
+            // End Message
+        },
+    });
+}
+// Coupon Remove End

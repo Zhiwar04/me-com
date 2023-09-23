@@ -62,7 +62,7 @@
                                     <div class="flex flex-col">
                                         <span>
                                             <span class="current-price font-md text-brand" id="price"></span>
-                                            <span class="current-price  text-brand">IQD</span>
+                                            {{-- <span class="current-price  text-brand">IQD</span> --}}
 
                                         </span>
                                         {{-- <span class="save-price font-md color3 ml-15">26% Off</span> --}}
@@ -96,6 +96,8 @@
                                                     class="text-brand"></span></li>
                                             <li class="mb-5">category:<span id="product_category" class="text-brand">
                                                 </span></li>
+                                            <li class="mb-5">Vendor:<span class="text-brand" id="pvendor_id"> </span>
+                                            </li>
 
                                         </ul>
 

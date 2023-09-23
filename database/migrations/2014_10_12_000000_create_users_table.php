@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('vendor_short_info')->nullable();
             $table->string('phone')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
+            $table->string('last_seen')->nullable();
             $table->enum('role',['user','admin','vendor'])->default('user');
             $table->string('password');
             $table->rememberToken();

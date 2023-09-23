@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{ route('store.brand') }}" method="post"
+                            <form id="myForm" action="{{ route('brands.store') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">

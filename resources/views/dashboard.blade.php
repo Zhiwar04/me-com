@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/dark-theme.css?v=1.0') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="{{ asset('frontend/assets/js/shop.js?v=5.4') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -72,7 +73,6 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js?v=5.4') }}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.4') }}"></script>
-    <script src="{{ asset('frontend/assets/js/shop.js?v=5.4') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $.ajaxSetup({

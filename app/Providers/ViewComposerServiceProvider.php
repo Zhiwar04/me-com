@@ -21,7 +21,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['auth.*','frontend.product.*','frontend.vendor.*','frontend.wishlist.*','frontend.compare.*','frontend.mycart.*'], function ($view) {
+        View::composer(['auth.*','frontend.*'], function ($view) {
             $categories =  Category::orderBy('category_name','ASC')->get();
             $subcategories = SubCategory::orderBy('subcategory_name','ASC')->get();
             $vendors = User::orderBy('id','DESC')->where('role','vendor')->get();

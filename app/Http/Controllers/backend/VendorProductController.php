@@ -13,6 +13,9 @@ class VendorProductController extends Controller
     public function VendorAllProduct(){
         $id = Auth::user()->id;
         $products = Product::latest()->where('vendor_id',$id)->get();
+        if(request()->wantsJson()){
+            return response()->json($products);
+        }
            return view('vendor.backend.product.vendor_product_all',compact('products'));
        }//end method AllProduct
 
@@ -24,6 +27,9 @@ class VendorProductController extends Controller
        }
        public function VendorGetSubCategory($category_id){
         $subcat = SubCategory::where('category_id',$category_id)->orderBy('subcategory_name','ASC')->get();
+        if(request()->wantsJson()){
+          return response()->json($subcat);
+        }
         return json_encode($subcat);
       }
       public function VendorStoreProduct(Request $request){
@@ -39,17 +45,11 @@ class VendorProductController extends Controller
         $product_id = Product::insertGetId([
     'brand_id' => $request->brand_id,
     'category_id' => $request->category_id,
-
     'subcategory_id' => $request->subcategory_id,
-
     'product_name' => $request->product_name,
-
     'product_slug' => strtolower(str_replace(' ','-', $request->product_name)),
-
     'product_code' => $request->product_code,
-
     'product_qty' => $request->product_qty,
-
     'product_tags' => $request->product_tags,
     'product_size' => $request->product_size,
     'product_color' => $request->product_color,
@@ -61,13 +61,9 @@ class VendorProductController extends Controller
     'featured' => $request->featured,
     'special_offer' => $request->special_offer,
     'special_deals' => $request->special_deals,
-
-
     'product_thambnail' => $save_url,
     'vendor_id' => Auth::user()->id,
     'status' => 1,
-
-
     'created_at' => Carbon::now(),
 
 
@@ -96,7 +92,14 @@ class VendorProductController extends Controller
     }/// end foreach
     // end multi image
 
-
+       if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Added successfully',
+            ]
+        );
+    }
     $notification = array(
         'message' =>'Vendor Product Added successfully',
         'alert-type' => 'success'
@@ -110,6 +113,12 @@ class VendorProductController extends Controller
     $categories = Category::latest()->get();
     $subcategory = SubCategory::latest()->where('id','category_id')->get();
     $products = Product::findOrFail($id);
+    if(request()->wantsJson()){
+        return response()->json([
+            'products' => $products,
+            'multiImgs' => $multiImgs,
+        ]);
+    }
     return view('vendor.backend.product.vendor_product_edit', compact('brands', 'categories', 'products', 'subcategory','multiImgs'));
 } /// end method
 public function VendorUpdateProduct(Request $request){
@@ -117,18 +126,11 @@ public function VendorUpdateProduct(Request $request){
      Product::findOrFail($product_id)->update([
         'brand_id' => $request->brand_id,
         'category_id' => $request->category_id,
-
-
         'subcategory_id' => $request->subcategory_id,
-
         'product_name' => $request->product_name,
-
         'product_slug' => strtolower(str_replace(' ','-', $request->product_name)),
-
         'product_code' => $request->product_code,
-
         'product_qty' => $request->product_qty,
-
         'product_tags' => $request->product_tags,
         'product_size' => $request->product_size,
         'product_color' => $request->product_color,
@@ -136,8 +138,6 @@ public function VendorUpdateProduct(Request $request){
         'discount_price' => $request->discount_price,
         'short_descp' => $request->short_descp,
         'long_descp' => $request->long_descp,
-
-
         'hot_deals' => $request->hot_deals,
         'featured' => $request->featured,
         'special_offer' => $request->special_offer,
@@ -149,6 +149,14 @@ public function VendorUpdateProduct(Request $request){
                 'message' =>'Vendor Product Updated Without Image successfully',
                 'alert-type' => 'success'
             );
+            if(request()->wantsJson()){
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'message' => 'Product Updated successfully',
+                    ]
+                );
+            }
             return redirect()->route('vendor.all.product')->with($notification);
 
 
@@ -173,6 +181,14 @@ public function VendorUpdateProductThambnail(Request $request){
         'updated_at' => Carbon::now(),
 
     ]);
+    if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Thambnail Updated successfully',
+            ]
+        );
+    }
     $notification = array(
         'message' =>'Vendor Product Image Thambnail Updated successfully',
         'alert-type' => 'success'
@@ -200,6 +216,14 @@ MultiImg::where('id',$id)->update([
 ]);
 
     }// end foreach
+    if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Multi Image Updated successfully',
+            ]
+        );
+    }
 
     $notification = array(
         'message' =>'Vendor Product Multi Image Updated successfully',
@@ -219,6 +243,14 @@ public function VendorMultiImageDelete($id){
         'message' =>'Vendor Product Multi Image Deleted successfully',
         'alert-type' => 'success'
     );
+    if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Multi Image Deleted successfully',
+            ]
+        );
+    }
     return redirect()->back()->with($notification);
 
 }///end method
@@ -228,12 +260,28 @@ public function VendorProductInactive($id){
         'message' =>'Product Inactive',
         'alert-type' => 'success'
     );
+    if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Inactive',
+            ]
+        );
+    }
     return redirect()->back()->with($notification);
 }//end method
 
 
 public function VendorProductActive($id){
     Product::findOrFail($id)->update(['status'=> 1]);
+    if(request()->wantsJson()){
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Product Active',
+            ]
+        );
+    }
     $notification = array(
         'message' =>'Product Active',
         'alert-type' => 'success'
@@ -246,6 +294,10 @@ public function VendorProductDelete($id){
     $product = Product::findOrFail($id);
     unlink($product->product_thambnail);
     Product::findOrFail($id)->delete();
+    $notification = array(
+        'message' =>'Vendor Product Deleted Successfuly',
+        'alert-type' => 'success'
+    );
     $images = MultiImg::where('product_id',$id)->get();
     foreach ($images as $img) {
         unlink($img->photo_name);

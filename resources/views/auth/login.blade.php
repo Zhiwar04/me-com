@@ -72,7 +72,7 @@
                                         <div class="form-group">
                                             <input type="email" class="@error('email') is-invalid @enderror"
                                                 id="email" required="" name="email"
-                                                placeholder="Username or Email *" />
+                                                value="{{ old('email') ?? '' }}" placeholder="Username or Email *" />
                                         </div>
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>

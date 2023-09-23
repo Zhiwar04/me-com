@@ -1,6 +1,5 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -25,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form id="myForm" action="{{ route('store.category') }}" method="post"
+                            <form id="myForm" action="{{ route('categories.store') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
@@ -70,7 +69,6 @@
 
             </div>
         </div>
-    </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {

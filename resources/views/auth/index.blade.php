@@ -27,6 +27,11 @@
                                                 class="fi-rs-shopping-bag mr-10"></i>Orders</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" id="return-tab" data-bs-toggle="tab" href="#return"
+                                            role="tab" aria-controls="return" aria-selected="false"><i
+                                                class="fi-rs-shopping-bag mr-10"></i>Return Orders</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders"
                                             role="tab" aria-controls="track-orders" aria-selected="false"><i
                                                 class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
@@ -88,44 +93,131 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Order</th>
+
+                                                            <th>Sl</th>
                                                             <th>Date</th>
+                                                            <th>Totaly</th>
+                                                            <th>Payment</th>
+                                                            <th>Invoice</th>
                                                             <th>Status</th>
-                                                            <th>Total</th>
+
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>#1357</td>
-                                                            <td>March 45, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$125.00 for 2 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2468</td>
-                                                            <td>June 29, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$364.00 for 5 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2366</td>
-                                                            <td>August 02, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$280.00 for 3 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a>
-                                                            </td>
-                                                        </tr>
+                                                        @foreach ($orders as $key => $order)
+                                                            <tr>
+                                                                <td>{{ $key + 1 }}</td>
+                                                                <td> {{ $order->order_date }}</td>
+                                                                <td> {{ number_format($order->amount, 0) }} IQD</td>
+                                                                <td> {{ $order->payment_method }}</td>
+                                                                <td> {{ $order->invoice_no }}</td>
+                                                                <td>
+                                                                    @if ($order->status == 'pending')
+                                                                        <span
+                                                                            class="badge rounded-pill bg-warning">Pending</span>
+                                                                    @elseif($order->status == 'confirm')
+                                                                        <span
+                                                                            class="badge rounded-pill bg-info">Confirm</span>
+                                                                    @elseif($order->status == 'processing')
+                                                                        <span
+                                                                            class="badge rounded-pill bg-dark">Processing</span>
+                                                                    @elseif($order->status == 'delivered')
+                                                                        <span
+                                                                            class="badge rounded-pill bg-success">Delivered</span>
+
+                                                                        @if ($order->return_order == 1)
+                                                                            <span class="badge rounded-pill"
+                                                                                style="background:red;">Return</span>
+                                                                        @endif
+                                                                    @endif
+
+
+                                                                </td>
+
+
+                                                                <td><a href="{{ url('user/order_details/' . $order->id) }}"
+                                                                        class="btn-sm btn-success"><i
+                                                                            class="fa fa-eye"></i> View</a>
+                                                                    <a href="{{ url('user/invoice_download/' . $order->id) }}"
+                                                                        class="btn-sm btn-danger"><i
+                                                                            class="fa fa-download"></i> Invoice</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {{-- return orders --}}
+
+                                <div class="tab-pane fade" id="return" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="mb-0">Returned Orders</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Sl</th>
+                                                            <th>Date</th>
+                                                            <th>Totaly</th>
+                                                            <th>Payment</th>
+                                                            <th>Invoice</th>
+                                                            <th>Status</th>
+
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($returns as $key => $order)
+                                                            <tr>
+                                                                <td>{{ $key + 1 }}</td>
+                                                                <td> {{ $order->order_date }}</td>
+                                                                <td> {{ number_format($order->amount, 0) }} IQD</td>
+                                                                <td> {{ $order->payment_method }}</td>
+                                                                <td> {{ $order->invoice_no }}</td>
+                                                                <td>
+                                                                    @if ($order->return_order == 0)
+                                                                        <span class="badge rounded-pill bg-warning">No
+                                                                            Retrun Request</span>
+                                                                    @elseif($order->return_order == 1)
+                                                                        <span
+                                                                            class="badge rounded-pill bg-danger">Pedding</span>
+                                                                    @elseif($order->return_order == 2)
+                                                                        <span
+                                                                            class="badge rounded-pill bg-success">Success</span>
+                                                                    @endif
+
+
+
+                                                                </td>
+
+
+                                                                <td><a href="{{ url('user/order_details/' . $order->id) }}"
+                                                                        class="btn-sm btn-success"><i
+                                                                            class="fa fa-eye"></i> View</a>
+                                                                    <a href="{{ url('user/invoice_download/' . $order->id) }}"
+                                                                        class="btn-sm btn-danger"><i
+                                                                            class="fa fa-download"></i> Invoice</a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- end return orders --}}
+
                                 <div class="tab-pane fade" id="track-orders" role="tabpanel"
                                     aria-labelledby="track-orders-tab">
                                     <div class="card">
@@ -133,27 +225,24 @@
                                             <h3 class="mb-0">Orders tracking</h3>
                                         </div>
                                         <div class="card-body contact-from-area">
-                                            <p>To track your order please enter your OrderID in the box below and press
-                                                "Track" button. This was given to you on your receipt and in the
+                                            <p>To track your order please enter your OrderID in the box
+                                                below and press
+                                                "Track" button. This was given to you on your receipt
+                                                and in the
                                                 confirmation email you should have received.</p>
                                             <div class="row">
                                                 <div class="col-lg-8">
-                                                    <form class="contact-form-style mt-30 mb-50" action="#"
-                                                        method="post">
+                                                    <form class="contact-form-style mt-30 mb-50"
+                                                        action="{{ route('track.order') }}" method="post">
+                                                        @csrf
                                                         <div class="input-style mb-20">
                                                             <label>Order ID</label>
-                                                            <input name="order-id"
+                                                            <input name="invoice_no"
                                                                 placeholder="Found in your order confirmation email"
                                                                 type="text" />
                                                         </div>
-                                                        <div class="input-style mb-20">
-                                                            <label>Billing email</label>
-                                                            <input name="billing-email"
-                                                                placeholder="Email you used during checkout"
-                                                                type="email" />
-                                                        </div>
-                                                        <button class="submit submit-auto-width"
-                                                            type="submit">Track</button>
+                                                        <button class="submit submit-auto-width" type="submit">
+                                                            Track Your Order</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -186,7 +275,8 @@
                                                 <div class="card-body">
                                                     <address>
                                                         4299 Express Lane<br />
-                                                        Sarasota, <br />FL 34249 USA <br />Phone: 1.941.227.4444
+                                                        Sarasota, <br />FL 34249 USA <br />Phone:
+                                                        1.941.227.4444
                                                     </address>
                                                     <p>Sarasota</p>
                                                     <a href="#" class="btn-small">Edit</a>
@@ -261,7 +351,8 @@
                                                     <div class="col-md-12">
                                                         <button type="submit"
                                                             class="btn btn-fill-out submit font-weight-bold"
-                                                            name="submit" value="Submit">Save Change</button>
+                                                            name="submit" value="Submit">Save
+                                                            Change</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -334,7 +425,8 @@
                                                     <div class="col-md-12">
                                                         <button type="submit"
                                                             class="btn btn-fill-out submit font-weight-bold"
-                                                            name="submit" value="Submit">Save Change</button>
+                                                            name="submit" value="Submit">Save
+                                                            Change</button>
                                                     </div>
                                                 </div>
                                             </form>

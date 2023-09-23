@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.subcategory') }}" class="btn btn-primary">Add SubCategory</a>
+                    <a href="{{ route('subcategories.create') }}" class="btn btn-primary">Add SubCategory</a>
 
 
 
@@ -47,9 +47,13 @@
 
 
                                     <td>
-                                        <a href="{{ route('edit.subcategory', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.subcategory', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
+                                        <a href="{{ route('subcategories.edit', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <form style="display: inline-block;" id="delete"
+                                            action="{{ route('subcategories.destroy', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
 
                                     </td>
                                 </tr>
