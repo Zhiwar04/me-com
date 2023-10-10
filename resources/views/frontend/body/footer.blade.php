@@ -191,10 +191,17 @@
             <div class="col-12 mb-30">
                 <div class="footer-bottom"></div>
             </div>
+<<<<<<< HEAD
             <div class="col-xl-4 col-lg-6 col-md-6">
                 <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">{{ $setting->copyright }}</strong> -
                     reserved.
                 </p>
+=======
+         <div class="col-xl-4 col-lg-6 col-md-6">
+                <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">Zhiwar & Shaida</strong> -
+                    Multi-Vendor Ecommerce
+                    Website <br />All rights reserved</p>
+>>>>>>> 249815441ff485981a36256d2e195cd30e9dfcaf
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 
