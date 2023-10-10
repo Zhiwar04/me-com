@@ -40,7 +40,7 @@
 
 </head>
 
-<body dir="auto">
+<body>
 
 
     <!-- Quick view -->

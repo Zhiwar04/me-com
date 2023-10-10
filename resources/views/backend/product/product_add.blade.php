@@ -321,7 +321,7 @@
 
                     $.ajax({
 
-                        url: "{{ url('/subcategory/ajax') }}/" + category_id,
+                        url: "{{ url('/admin/subcategory/ajax') }}/" + category_id,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {

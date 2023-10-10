@@ -23,10 +23,27 @@ class ProductController extends Controller
     {
         $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
         $brands = Brand::latest()->get();
-        $categories = Category::latest()->get();
+        $categories = Category::with('subcategories')->latest()->get();
+        if(request()->wantsJson()){
+            return response()->json(
+                [
+                    'brands' => $brands,
+                    'categories' => $categories,
+                    'activeVendor' => $activeVendor,
+                ]
+            );
+        }
         return view('backend.product.product_add', compact('brands', 'categories', 'activeVendor'));
     }
+    public function GetSubCategory($category_id)
+    {
+        $subcat = SubCategory::where('category_id',$category_id)->orderBy('subcategory_name','ASC')->get();
+        if(request()->wantsJson()){
+            return response()->json($subcat);
+        };
+        return json_encode($subcat);
 
+    }
     public function StoreProduct(Request $request)
     {
 
@@ -63,6 +80,7 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
         ]);
         //// multiple image upload from here
+
         $images = $request->file('multi_img');
         foreach ($images as $img) {
             //naweki nwey le nrawa bam shewaya 20282.png
@@ -70,19 +88,20 @@ class ProductController extends Controller
             //ba package image intervation size rasmaka kam krawataa
             Image::make($img)->resize(800, 800)->save('upload/products/multi-image/' . $make_name);
             $uploadPath = 'upload/products/multi-image/' . $make_name;
-            MultiImg::insert([
+            MultiImg::create([
 
                 'product_id' => $product_id,
                 'photo_name' => $uploadPath,
                 'created_at' => Carbon::now(),
             ]);
+
         } /// end foreach
         // end multi image
 
        if(request()->wantsJson()){
             return response()->json([
-                'data' => $product_id,
-                'images' => $images,
+                'message' => 'Product Added successfully',
+                'alert-type' => 'success'
             ]);
         }
         $notification = array(
@@ -112,9 +131,9 @@ class ProductController extends Controller
     } /// end method
 
 
-    public function UpdateProduct(Request $request)
+    public function UpdateProduct($id,Request $request)
     {
-        $product_id = $request->id;
+        $product_id = $id;
         Product::findOrFail($product_id)->update([
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
@@ -150,9 +169,9 @@ class ProductController extends Controller
         return redirect()->route('all.product')->with($notification);
     } /// end method
 
-    public function UpdateProductThambnail(Request $request)
+    public function UpdateProductThambnail($id,Request $request)
     {
-        $pro_id = $request->id;
+        $pro_id = $id;
         $oldImage = $request->old_img;
         $image = $request->file('product_thambnail');
         //naweki nwey le nrawa bam shewaya 20282.png
@@ -181,7 +200,7 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     } /// end method
 
-    public function UpdateProductMultiimage(Request $request)
+    public function UpdateProductMultiimage(Request $request )
     {
         $imgs = $request->multi_img;
         foreach ($imgs as $id => $img) {

@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     public function vendor(){
         return $this->belongsTo(User::class,'vendor_id','id');
     }
@@ -23,4 +23,5 @@ class Product extends Model
     public function brand(){
         return $this->belongsTo(Brand::class,'brand_id','id');
     }
+
 }

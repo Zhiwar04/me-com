@@ -97,9 +97,9 @@
 
     @endphp
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
-        <div class="container">
+        <div class="">
             <div class="header-wrap">
-                <div class="logo logo-width-1">
+                <div class="logo ">
                     <a href="index.html"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
@@ -107,7 +107,7 @@
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
                             <select class="select-active">
-                                <option selected>All Categories</option>
+                                <option selected>{{ __('lang.all_categories') }}</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                                 @endforeach
@@ -252,9 +252,10 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="{{ '/' }}">Home </a>
+                                    <a class="active" href="{{ '/' }}">{{ __('lang.home') }} </a>
                                 <li>
-                                    <a href="#">Categories <i class="fi-rs-angle-down"></i></a>
+                                    <a href="#">{{ __('lang.categories') }} <i
+                                            class="fi-rs-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         @foreach ($categories as $category)
                                             <li>
@@ -280,7 +281,7 @@
 
                                     </ul>
                                 </li>
-                                <li><a href="">Vendors<i class="fi-rs-angle-down"></i></a>
+                                <li><a href="">{{ __('lang.vendors') }}<i class="fi-rs-angle-down"></i></a>
 
                                     <ul class="sub-menu">
                                         @foreach ($vendors as $vendor)
@@ -454,13 +455,13 @@
                 <nav>
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
-                            <a class="active" href="{{ '/' }}">Home </a>
+                            <a class="active" href="{{ '/' }}">{{ __('lang.home') }} </a>
 
                         </li>
 
 
                         <li class="menu-item-has-children">
-                            <a href="#">Categories</a>
+                            <a href="#">{{ __('lang.categories') }}</a>
                             <ul class="dropdown">
                                 @foreach ($categories as $category)
                                     <li class="menu-item-has-children">

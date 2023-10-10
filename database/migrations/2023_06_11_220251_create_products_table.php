@@ -29,10 +29,10 @@ return new class extends Migration
             $table->text('long_descp');
             $table->string('product_thambnail');
             $table->string('vendor_id')->nullable();
-            $table->integer('hot_deals')->nullable();
-            $table->integer('featured')->nullable();
-            $table->integer('special_offer')->nullable();
-            $table->integer('special_deals')->nullable();
+            $table->boolean('hot_deals')->nullable()->default(null);
+            $table->boolean('featured')->nullable()->default(null);
+            $table->boolean('special_offer')->nullable()->default(null);
+            $table->boolean('special_deals')->nullable()->default(null);
             $table->integer('status')->default(0);
             $table->timestamps();
         });

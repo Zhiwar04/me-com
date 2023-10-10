@@ -282,13 +282,14 @@ Route::prefix('admin')->middleware(['auth', 'Role:admin'])->group(function () {
     Route::resource('rolePermissions', RolePermissionController::class)->except('show');
     Route::resource('admins', MultiAdminController::class)->except('show');
     //product
+    route::get('/subcategory/ajax/{category_id}', [ProductController::class, 'GetSubCategory']);
     Route::controller(ProductController::class)->group(function () {
         Route::get('/all/product', 'AllProduct')->name('all.product');
         Route::get('/add/product', 'AddProduct')->name('add.product');
         Route::post('/store/product', 'StoreProduct')->name('store.product');
         Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
-        Route::post('/update/product', 'UpdateProduct')->name('update.product');
-        Route::post('/update/product/thambnail', 'UpdateProductThambnail')->name('update.product.thambnail');
+        Route::post('/update/product/{id}', 'UpdateProduct')->name('update.product');
+        Route::post('/update/product/thambnail/{id}', 'UpdateProductThambnail')->name('update.product.thambnail');
         Route::post('/update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
         Route::get('/product/multiimg/delete/{id}', 'MultiImageDelete')->name('product.multiimg.delete');
         Route::get('/product/inactive/{id}', 'ProductInactive')->name('product.inactive');

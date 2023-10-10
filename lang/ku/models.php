@@ -34,6 +34,8 @@ return [
         'body' => 'ناوەڕۆک',
         'excerpt' => 'کورتە',
         'featured_image' => 'وێنەی بەرزترین',
+        'vendor' => 'فرۆشیار',
+
 
 ]
     ];
