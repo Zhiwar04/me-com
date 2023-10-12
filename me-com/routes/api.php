@@ -89,7 +89,11 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
         Route::post('/update/product{id}', 'UpdateProduct')->name('update.product');
         Route::post('/update/product/thambnail/{id}', 'UpdateProductThambnail')->name('update.product.thambnail');
+<<<<<<< HEAD:me-com/routes/api.php
         Route::post('/update/product/multiimage/{id}', 'UpdateProductMultiimage')->name('update.product.multiimage');
+=======
+        Route::post('/update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
+>>>>>>> 1c7c010d768d3bf1036fb0e34e4849b92adfdda8:routes/api.php
         Route::get('/product/multiimg/delete/{id}', 'MultiImageDelete')->name('product.multiimg.delete');
         Route::get('/product/inactive/{id}', 'ProductInactive')->name('product.inactive');
         Route::get('/product/active/{id}', 'ProductActive')->name('product.active');

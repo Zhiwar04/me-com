@@ -80,7 +80,11 @@
         <div class="">
             <div class="header-wrap">
                 <div class="logo ">
+<<<<<<< HEAD:me-com/resources/views/frontend/body/header.blade.php
                     <a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
+=======
+                    <a href="index.html"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
+>>>>>>> 1c7c010d768d3bf1036fb0e34e4849b92adfdda8:resources/views/frontend/body/header.blade.php
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -241,6 +245,10 @@
                                     </ul>
                                 </li>
                                 <li><a href="">{{ __('lang.vendors') }}<i class="fi-rs-angle-down"></i></a>
+<<<<<<< HEAD:me-com/resources/views/frontend/body/header.blade.php
+=======
+
+>>>>>>> 1c7c010d768d3bf1036fb0e34e4849b92adfdda8:resources/views/frontend/body/header.blade.php
                                     <ul class="sub-menu">
                                         @foreach ($vendors as $vendor)
                                             <li>
