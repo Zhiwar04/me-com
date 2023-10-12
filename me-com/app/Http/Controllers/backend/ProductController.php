@@ -200,11 +200,7 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     } /// end method
 
-<<<<<<< HEAD:me-com/app/Http/Controllers/backend/ProductController.php
     public function UpdateProductMultiimage(Request $request,$id  )
-=======
-    public function UpdateProductMultiimage(Request $request )
->>>>>>> 1c7c010d768d3bf1036fb0e34e4849b92adfdda8:app/Http/Controllers/backend/ProductController.php
     {
 
         $imgs = $request->multi_img;
