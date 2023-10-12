@@ -1,0 +1,3 @@
+1.package passport da abazenin w configure dakain pashan controllerek la controllers api/v1/ drust dakain
+1.yakam jar aroin routekani naw web.php aheninawa wa route create akan la abain labar away lajyati blade ema route xoman ba vue drust akain wa lanaw controlleri har routek dalen agar requestaka json bw awa yan msgek yan dataka bgarenetawa bapey logicaka hale abzherin
+2. dway away aw bashaman krd ba postman testi routi api kaman akayn...
